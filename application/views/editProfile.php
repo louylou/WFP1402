@@ -109,7 +109,7 @@
 </section><!-- end profileLikes -->		
 
 <section id="addGift">
-<?php echo form_open(base_url()); ?>
+<?php echo form_open( base_url()."editProfile" ); ?>
 	<legend>Add Gift Items To Your Gift List</legend>
 		<p>
 			<?php

@@ -256,7 +256,7 @@ p { padding-bottom: 20px; }
 
 #registration div p:last-of-type { /* last p */
 	padding-top: 15px;
-	padding-bottom: 13px;
+	padding-bottom: 6px;
 	padding-left: 65px;
 	font-size: 1.2em;
 }
@@ -267,7 +267,7 @@ p { padding-bottom: 20px; }
 	margin-bottom: 50px; /*pushed the footer down lower*/
 }
 #registration div {
-	padding-bottom: 63px;
+	padding-bottom: 0px;
 }
 
 #registration form {

@@ -51,7 +51,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	
 	
-
+	
 	public function addUser($user_info) {
 	
 		//query to save data into the db table 		
@@ -108,29 +108,39 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	public function editPro($likes, $userId = '') {
 		
+		$this->db->select('user_fullname, user_id'); //info to display user fullname
+		$this->db->from('users');//info to display user fullname
+		
 		
 		if ($userId != ''){
 			$this->db->where('user_id', $userId);
-		}
-		$this->db->update('users', $likes); //insert
-		
-		
-		return $this->db->last_query();
-		
-		//$this->db->update('users',$addItem);
-
-		
-		
-		//$this->db->where('profile_id', $id);
-		//$this->db->update('profiles', $data); 
-		
-		//if ($result->num_rows() > 0) {
-		
-		//	return $result->result_array();
 			
-		//} else return false;	
+			$this->db->update('users', $likes); //puts input field data into DB 				
+			return $this->db->last_query();			
+		}
+								
+		$fullNameDisplay= $this->db->get(); 
+
+		if ($fullNameDisplay->num_rows() > 0) { 
+				
+			return $fullNameDisplay->result_array(); 
+			
+		} else return false;	
 	
 	}
+	
+	public function addGifts($gifts, $userId = '') {
+	
+		if ($userId != ''){
+			$this->db->where('user_id', $userId);
+			
+			$this->db->update('users',$gifts); //puts input field data into DB 				
+			return $this->db->last_query();			
+		}
+	
+		
+	}
+	
 
 	
 } //end Class MainModel

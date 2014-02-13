@@ -47,11 +47,11 @@ class MainController extends CI_Controller {
 					'label' => 'Last Name',
 					'rules' => 'required',
 				),*/
-				array (
+				/*array (
 					'field' => 'groupName',
 					'label' => 'Group',
 					'rules' => 'strip_tags|trim|required|xss_clean', // add|is_unique[users.user_group] 
-				),
+				),*/
 				array (
 					'field' => 'newEmail',
 					'label' => 'Email',
@@ -103,7 +103,6 @@ class MainController extends CI_Controller {
 		}
 
 		$data['error'] = "";
-		//$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
 		$this->form_validation->set_message('required', 'Required!');
 		
@@ -122,7 +121,6 @@ class MainController extends CI_Controller {
 					
 					// Go to Group Page
 					redirect( base_url().'groupHome', 'refresh');
-					//redirect( base_url().'userProfile', 'refresh');
 					exit();				
 			} 
 			else if ($this->input->post('submit') === 'Submit') {
@@ -130,8 +128,6 @@ class MainController extends CI_Controller {
 				$user_info = array( 
 				'user_fullname' => $this->input->post('fullname'), //was firstName
 				//'user_lastName' => $this->input->post('lastName'),
-				
-				//add gruop id here to assign users to it
 				'user_email' => $this->input->post('newEmail'),
 				'user_password' => md5($this->input->post('newPassword')),
 				);
@@ -228,10 +224,8 @@ class MainController extends CI_Controller {
 					'label' => 'Dislikes',
 					'rules' => 'trim|xss_clean',
 				),
-			);
-		
+			);		
 		}
-
 		if ($this->input->post('editSave') === 'Save') {
 		
 			$likes = array( 
@@ -241,21 +235,37 @@ class MainController extends CI_Controller {
 				'likes_hobbies' => $this->input->post('hobbies'),
 				'likes_other' => $this->input->post('other'),
 				'dislikes' => $this->input->post('dislikes'),
-			);
-		
-		
+			);				
 			// Edit User
 			$this->MainModel->editPro($likes, $this->session->userdata('userId'));
 		}
 		
+		else if ($this->input->post('addGift') === 'Add Gift') {
+		
+			$gifts = array( 
+				'gift_name' => $this->input->post('item'), 
+				'gift_price' => $this->input->post('price'),
+				'gift_url' => $this->input->post('url'),
+			);
+
+			$this->MainModel->addGifts($gifts, $this->session->userdata('userId'));
+		}
+		else { //not needed		
+			// Set Error Message
+			$data['error'] = "Please Enter Correct gift Info.";		
+		}
+				
 		// Get User
-		//$data['user'] = ;	
-			
+		//$data['user'] = ;				
+
+		$userId =  $this->uri->segment(2);  //the 2 stands for the userID in the URL ex: www.domain/function/2
+		$data['proInfo'] = $this->MainModel->editPro($userId);
+	
 		$data['title'] = "Edit Profile: Perfect For Me";
+		
 		$this->load->view('header', $data); 
 		$this->load->view('editProfile', $data); 
-		$this->load->view('footer');
-	
+		$this->load->view('footer');	
 	}
 	
 	public function allEvents(){

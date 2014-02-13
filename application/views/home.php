@@ -35,17 +35,21 @@
 	
 		<p><!--was 'firstName'-->
 			<?php
-			$data = array(
-				'name' => 'fullname',
-				'id' => 'fullname',
-				'placeholder' => 'Full Name',
-				//'value' => set_value('email'),
-				'size' => '75'
-			
-			);
-			echo form_label('Full Name:', 'fullname');
-			echo form_error('fullname');
-			echo form_input($data, set_value('fullname')); ?>
+			$s = $this->session->userdata('loggedIn'); 
+			$helloUser = $this->session->userdata('username');//displays correct user name
+			if (!$s){
+				$data = array(
+					'name' => 'fullname',
+					'id' => 'fullname',
+					'placeholder' => 'Full Name',
+					'size' => '75'			
+				);
+				echo form_label('Full Name:', 'fullname');
+				echo form_error('fullname');
+				echo form_input($data, set_value('fullname')); 
+			} else {
+				echo "<h4>Welcome, ".ucwords($helloUser)."!</h4>";
+			}?>
 		</p>
 		<!--<p>
 			<?php
@@ -63,58 +67,50 @@
 		</p>-->
 		<p>
 			<?php
-			$data = array(
-				'name' => 'groupName',
-				'id' => 'groupName',
-				'placeholder' => 'Create a new group name of your own or type in one you want to join!',
-				//'value' => set_value('email'),
-				'size' => '75'
-			
-			);
-			echo form_label('Group:', 'groupName');
-			echo form_error('groupName');
-			echo form_input($data, set_value('groupName')); ?>
-		</p>
-		<p>
-			<?php
-			$data = array(
-				'name' => 'newEmail',
-				'id' => 'newEmail',
-				'placeholder' => 'Email',
-				//'value' => set_value('email'),
-				'size' => '75'
-			
-			);
-			echo form_label('Email:', 'newEmail');
-			echo form_error('newEmail');
-			echo form_input($data, set_value('newEmail')); ?>
+			if (!$s){
+				$data = array(
+					'name' => 'newEmail',
+					'id' => 'newEmail',
+					'placeholder' => 'Email',
+					//'value' => set_value('email'),
+					'size' => '75'
+		
+				);
+				echo form_label('Email:', 'newEmail');
+				echo form_error('newEmail');
+				echo form_input($data, set_value('newEmail')); 
+			}?>			
 		</p>
 
 		<p>
 			<?php
-			$data = array(
-				'name' => 'newPassword',
-				'id' => 'newPassword',
-				'placeholder' => 'Password',
-				//'value' => set_value('password'),
-				'size' => '75'
-			);
-			echo form_label('Password:', 'newPassword');
-			echo form_error('newPassword');
-			echo form_password($data, set_value('newPassword')); ?>
+			if (!$s){
+				$data = array(
+					'name' => 'newPassword',
+					'id' => 'newPassword',
+					'placeholder' => 'Password',
+					//'value' => set_value('password'),
+					'size' => '75'
+				);
+				echo form_label('Password:', 'newPassword');
+				echo form_error('newPassword');
+				echo form_password($data, set_value('newPassword')); 
+			}?>
 		</p>
 		<p>
 			<?php
-			$data = array(
-				'name' => 'c_pwd',
-				'id' => 'c_pwd',
-				'placeholder' => 'Confirm Password',
-				//'value' => set_value('password'),
-				'size' => '75'
-			);
-			echo form_label('Confirm:', 'c_pwd');
-			echo form_error('c_pwd');
-			echo form_password($data, set_value('c_pwd')); ?>
+			if (!$s){
+				$data = array(
+					'name' => 'c_pwd',
+					'id' => 'c_pwd',
+					'placeholder' => 'Confirm Password',
+					//'value' => set_value('password'),
+					'size' => '75'
+				);
+				echo form_label('Confirm:', 'c_pwd');
+				echo form_error('c_pwd');
+				echo form_password($data, set_value('c_pwd')); 
+			}?>
 		</p>
 	
 		<p>
