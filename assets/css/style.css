@@ -1,0 +1,871 @@
+/*--------------------- CSS 3 ------------------------*/
+/*
+Color: Plum: #4e226d;
+	   Teal: #568d81;
+	   white: #fdfaff;
+	   light purple: #d3c8da;
+	   h1 on purple bg: #f5e9ff;
+
+Text:  25px: font-size: 1.563em;
+	   24px: font-size: 1.500em; 
+	   18px: font-size: 1.125em;
+	   
+	   
+box-shadow: 10px -3px 5px #d8d7cd; 
+*/
+
+/* --------------------------------------------- */
+/* -- STRUCTURE -- */
+/* --------------------------------------------- */
+body {
+	margin: 0;
+	color: #4e226d;
+	font: 18px/24px "SF Arborcrest Light", Helvetica, arial;
+	/*font-weight: bold;*/
+	background-image: url('../images/bg.jpg');
+	background-repeat: repeat-x;
+}
+
+nav, 
+section, 
+footer ul { width: 960px; margin: 0 auto; }
+
+nav:after, 
+section:after, 
+footer:after { 
+	/*clearing all floating elements*/
+	content: ""; display: block; clear: both;	
+}
+
+/*
+#registration a:visited,
+#profileList a:visited, 
+#calendar a:visited,
+#lastResort a:visited { color: #a7dace; }
+*/
+
+
+/* -- Header & Nav -- */
+header{ /*--purple Nav gradient--*/
+	margin-top: 50px;
+	margin-bottom: 0px;	
+	background: -webkit-linear-gradient(180deg, #e2d7e9 0%, #a590b4 50%, #866f97 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #e2d7e9 0%, #a590b4 50%, #866f97 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #e2d7e9 0%, #a590b4 50%, #866f97 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #e2d7e9 0%, #a590b4 50%, #866f97 100%); /* Standard syntax */	
+	border: 1px #b3a0c0 solid;
+}
+
+nav ul { 
+	position: relative; 
+	float: left; 
+	padding-left: 200px;
+	margin: 0px;
+	height: 84px; 
+}
+nav li {
+	float: left;
+	list-style-type: none;
+	height: 84px; 
+}
+nav li a {
+	display: block;
+	padding-right: 50px;
+	padding-left:50px;
+	padding-top: 30px;
+	color: #4e226d;
+	text-decoration: none;
+	font-size: 1.563em; /*25px*/
+	text-transform:uppercase;
+}
+nav li:first-of-type { /*--Logo--*/
+	position: absolute; top: -35px; left: 0px;
+	width: 150px; height: 150px; 
+	background: url('../images/logoSmall.png') no-repeat center center;
+}
+nav li:first-of-type a { /*--Logo--*/
+	width: 100px; 
+	height: 150px; 
+	padding: 0px; 
+	text-indent: -9999px;
+}
+nav li:not(:first-of-type) a:hover { 
+	background: #568d81;
+	
+	background: -webkit-linear-gradient(180deg, #c7e2dc 0%, #8bb3aa 50%, #568d81 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #c7e2dc 0%, #8bb3aa 50%, #568d81 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #c7e2dc 0%, #8bb3aa 50%, #568d81 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #c7e2dc 0%, #8bb3aa 50%, #568d81 100%); /* Standard syntax */	
+	
+	/*border: 1px #8bb3aa solid;*/
+	height: 84px; 		
+}
+nav form { 
+	/*float: right; */
+	padding: 0px; 
+}
+nav form label { 
+	/*display: none; */
+}
+nav form p { 
+	margin: 5px 0; 
+	padding: 0px; 
+}
+nav form input {
+	float: right;
+	
+	padding: 5px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;	
+}
+nav form input:focus, textarea:focus {
+    outline: none; /*gets rid of the blue glow*/
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* Standard syntax */
+}
+
+
+
+/* --------------------------------------------- */
+/* -- TYPOGRAPHY -- */
+/* --------------------------------------------- */
+
+h1 {
+ 	padding: 20px;
+	font-size: 1.3em; color: #f5e9ff;
+	background: #61397e;
+	
+	background: -webkit-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Safari */
+	background: -o-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*Standard syntax */		
+}
+
+h2 {}
+h3 {
+	padding-left: 20px;
+	font-size: 1.2em;
+	color: #4e226d;
+	text-transform: uppercase;
+}
+h4 {}
+h5 {}
+
+p { padding-bottom: 20px; }
+
+
+
+/* --------------------------------------------- */
+/* -- CONTENT -- */
+/* --------------------------------------------- */
+
+#breadcrumbs {
+	padding: 30px 0px 15px 0px;
+	overflow: hidden;
+	opacity: .4;
+}
+#breadcrumbs li {
+	list-style: none;
+	padding-left: 10px;
+	float: left;
+}
+#breadcrumbs li:first-of-type {
+	padding-left: 0px;
+}
+#breadcrumbs ul li a { 
+	color: #4e226d;
+	text-decoration: none; 
+	position: relative; 
+	display: block;
+	float: left;
+}
+
+.birthday {
+	/*background: blue;*/
+	background: url ('../images/cakeIcon.jpg') no-repeat left top;
+	/*position: absolute; left 0px; top 0px;	*/
+}
+.graduation {
+	background-image: url ('../images/hat.jpg');
+}
+.party {
+	background-image: url ('../images/hats.jpg');
+}
+.holiday {}
+
+
+
+/* -- CTA -- */
+#cta {
+	padding:0px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#cta p { padding: 0px; }
+
+
+/* -- WHY JOIN -- */
+#registration div h1 {
+	position: relative; left: -20px; top: -20px;
+ 	width: 110%; /* fallback if needed */
+  	width: calc(100% + 40px);
+ 	padding: 20px;
+	font-size: 2em; color: #f5e9ff; 
+	background: #61397e;
+	
+	background: -webkit-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Safari */
+	background: -o-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #aa96b9 0%, #61397e 50%, #4e226d 100%); /*Standard syntax */		
+}
+
+#registration div {
+	padding: 20px;
+	width: 39%;	
+	background: #fdfaff;
+}
+
+#registration div p:last-of-type { /* last p */
+	padding-top: 15px;
+	padding-bottom: 13px;
+	padding-left: 65px;
+	font-size: 1.2em;
+}
+
+/* -- REGISTRATION FORM -- */
+#registration div, #registration form { 
+	float: left; 
+	margin-bottom: 50px; /*pushed the footer down lower*/
+}
+#registration div {
+	padding-bottom: 63px;
+}
+
+#registration form {
+	background: #d3c8da;
+	box-shadow: 10px -3px 5px #d8d7cd;
+	padding: 20px;
+	width: 61%; 
+}
+				
+#registration legend {
+	border-bottom: solid 1px #a690b6;
+	width: 100%; /*width for line*/
+	font-size: 1.5em;
+}
+
+#registration form p {
+	font-size: 1.125em; /*18px*/
+	text-transform:uppercase;
+	padding-top: 30px;	/*padding between text fields*/
+	clear: both;
+}
+#registration form p label {
+	color: #7a5992;
+	padding-right: 15px;
+	padding-top: 10px;
+	float: left;
+}
+#registration form input {
+	padding: 13px; /*height of text field*/
+	margin: 0px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;		
+	float: right;
+}
+#registration form input:focus, textarea:focus {
+    outline: none; /*gets rid of the blue glow*/
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* Standard syntax */
+}
+
+/* ---- GROUP HOME PAGE ---- */
+/* -- PROFILE LIST -- */
+
+#profileList, #calendar {
+	margin-top: 50px;
+	float: left; 
+	margin-bottom: 50px; /*pushed the footer down lower*/
+	box-shadow: 10px -3px 5px #d8d7cd;
+	background: #fdfaff;
+}
+
+#profileList {
+	position: relative;
+	margin-right: 40px;
+	width: 50%;	
+}
+#profileList ul { text-transform:uppercase;	}
+#profileList ul li {
+	position: relative; padding: 20px 20px 20px 110px;
+	font-size: 1.500em; /*24pt*/	
+}
+#profileList ul li:nth-child(2n) { background: #f8f3fb; }
+#profileList ul li img {
+	display: block; position: absolute; left: 15px; top: 15px;
+}
+#profileList ul li:after { content: ""; display: block; clear: both; }
+#profileList ul li a {
+	display: block;
+	padding: 5px 0px 15px 0px;
+	color: #568d81; text-decoration: none;
+}
+
+/* -- Filters -- */
+#profileList ul:first-of-type, 
+#giftList ul:first-of-type,
+#allEvents p {
+	position: absolute; right: 0px; top: 0px;
+ 	padding: 20px 10px 10px 10px;
+	color: #fff;
+}
+
+#profileList ul:first-of-type li,
+#giftList ul:first-of-type li {
+	font-size: .8em;
+	padding: 0px 5px;
+	float: left;
+	background: none;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+}
+#allEvents p:first-of-type {
+	padding-right: 130px;
+}
+#allEvents p {
+	font-size: .8em;
+	float: left;
+	background: none;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+}
+#allEvents p:last-of-type {
+	padding-right: 20px;
+}
+
+
+/* -- Links -- */
+
+#profileList ul:first-of-type li a { padding: 0px; }
+
+#profileList ul:first-of-type li:first-of-type a {
+	 color: #4e226d;
+	 background: #dfcfec;
+	 -webkit-border-radius: 5px;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+	 border: 1px solid #bfafca;
+	 padding: 5px 5px 0px 5px;	 
+}
+#allEvents p a {
+	 color: #4e226d;
+	 background: #dfcfec;
+	 -webkit-border-radius: 5px;
+	 -moz-border-radius: 5px;
+	 border-radius: 5px;
+	 border: 1px solid #bfafca;
+	 padding: 8px 8px 5px 8px;
+	 text-decoration: none;	  
+}
+
+#profileList ul:first-of-type li:last-of-type a,
+#giftList ul:first-of-type li:last-of-type a {
+	color: #d4c5e1;	
+	text-decoration: none;
+}
+
+
+/* -- CALENDAR, All EVENTS, ABOUT, TERMS CONTACT PAGES-- */
+
+#calendar{
+	width: 45%;
+	position: relative;	
+}
+#allEvents, #about, #terms, #contact {
+	position: relative;
+	margin-bottom: 50px; /*pushed the footer down lower*/
+	box-shadow: 10px -3px 5px #d8d7cd;
+	background: #fdfaff;
+}
+#calendar p { padding-bottom:0px; }
+#about p, #terms p { 
+	padding:20px; 
+}
+#contact p:nth-child(2) { 
+	padding:20px; 
+}
+#contact p { 
+	padding:5px 0px 0px 5px; 
+}
+#contact p:last-of-type { 
+	padding-bottom: 20px; 
+}
+#about h1, #terms h1, #contact h1 {
+	text-transform: uppercase;
+}
+
+#calendar p a{
+	position: absolute; right: 0px; top: 20px;
+ 	padding: 0px 10px 0px 0px;
+	color: #d4c5e1;
+	background: none;
+	text-decoration: none;
+	text-transform:uppercase;	
+	font-size: .8em;
+	letter-spacing: .02em;
+}
+#calendar ul li img, 
+#allEvents ul li img {
+	padding-right: 20px;
+	float: left;
+	display: block; position: absolute; left: 15px; top: 15px;
+}
+#calendar ul li, 
+#allEvents ul li {
+	position: relative; padding: 20px 20px 20px 100px;		
+	color: #9e80b5;
+	font-size: .9em;
+	text-transform:uppercase;
+}
+
+#calendar ul li:nth-child(2n), 
+#allEvents ul li:nth-child(2n) {
+	background: #f8f3fb;
+
+}
+#calendar ul li a {
+	display: block;
+	color: #568d81;
+	font-size: 1.3em;
+	text-transform:uppercase;
+	padding: 0px;
+	color: #568d81; text-decoration: none;
+}
+
+#allEvents ul li a {
+	display: block;
+	color: #4e226d;
+	font-size: 1.5em;
+	text-decoration: none;
+	text-transform:uppercase;
+}
+#calendar ul li:last-of-type,
+#allEvents ul li:last-of-type {
+	padding-bottom: 20px;
+}
+
+#calendar ul li:after { content: ""; display: block; clear: both; }
+
+#calendar span,
+#allEvents span {
+	color: #4e226d;
+	font-size: 1.5em;
+	text-transform:uppercase;
+	display: inline-block;
+}
+
+
+/* -- LAST RESORT -- */
+
+#lastResort {
+	width: 45%;
+	float: left;
+	margin-bottom: 50px; /*pushed the footer down lower*/
+}
+
+#lastResort h1 {
+	color: #4e226d;
+	font-size: 1.5em;
+	padding: 20px 290px 20px 20px;
+	background: #fdfaff;	
+	border-bottom: solid 2px #4e226d;
+	box-shadow: 10px -3px 5px #d8d7cd;	
+}
+
+#lastResort ul li img {
+	padding: 20px 20px 0px 20px;
+	float: left;
+}
+#lastResort ul li {
+	clear: both;
+}
+
+#lastResort span {
+	display: inline-block;
+	text-transform:uppercase;
+	padding-top: 35px;
+}
+#lastResort ul li a { 
+	display: block;
+	color: #568d81;
+	font-size: .8em;
+	text-transform:uppercase;
+	letter-spacing:1px;	
+}
+
+#lastResort ul li:last-of-type {
+	padding-bottom: 25px;
+	border-bottom: solid 2px #4e226d;
+}
+
+/* ---- USER PROFILE---- */
+/* --TOP OF PROFILE -- */
+
+#profile,
+#editProfile {
+	background: #d3c8da;
+	border: solid 1px #b1a3ba;
+	position: relative;
+	box-shadow: 10px -3px 5px #d8d7cd;
+}
+#profile h1, 
+#editProfile h1 {
+	text-transform:uppercase;
+}
+#profile > p:first-of-type,
+#editProfile > p:first-of-type {
+	color: #568d81;
+	padding: 20px;
+	letter-spacing: .046em;
+	float: left;
+}
+#profile > p:nth-of-type(2),
+#editProfile > p:nth-of-type(2) {
+	position: absolute; left: 0px; top: 0px;
+ 	padding: 380px 0px 0px 20px;
+	font-size: 1em; 
+}
+#editProfile > p:nth-of-type(2) span {
+	font-size: .7em;
+	color: #7a5992;
+	opacity: .8;
+}
+#profile p a {
+	color: #568d81;
+	letter-spacing: .046em;
+}
+#editProfile p a {
+	display: block;
+	color: #568d81;
+	letter-spacing: .046em;
+}
+#profile form,
+#editProfile form{
+	padding: 20px 20px 30px 0px;
+	/*width: 60%;*/
+	float: right;
+}
+#addGift form {
+	padding: 20px;
+}
+
+#profile form p,
+#editProfile form p {
+	font-size: .8em; 
+	text-transform:uppercase;
+	padding-top: 10px;	/*padding between text fields*/
+	clear: both;
+}
+#addGift form p{
+	font-size: .8em; 
+	text-transform:uppercase;
+	padding: 10px 0px 0px 0px;	/*padding between text fields*/
+}
+
+
+#profile legend,
+#editProfile legend,
+#addGift legend {
+	border-bottom: solid 1px #a690b6;
+	width: 100%; /*width for line*/
+	font-size: 1.5em;
+}
+
+#profile p label,
+#editProfile p label {
+	color: #7a5992;
+	padding-right: 15px;
+	padding-top: 5px;
+	float: left;
+}
+#addGift p label {
+	width: 13%;
+	color: #7a5992;
+	padding-right: 15px;
+	padding-top: 5px;
+	float: left;
+}
+
+
+#profile form input,
+#editProfile form input {
+	padding: 10px; /*height of text field*/
+	margin: 0px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;	
+	
+	float: right;
+}
+#addGift form input {
+	padding: 10px; /*height of text field*/
+	margin: 0px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;	
+}
+
+
+#profile form input:focus, textarea:focus,
+#editProfile form input:focus, textarea:focus {
+    outline: none; /*gets rid of the blue glow*/
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* Standard syntax */
+}
+
+#profile form p:last-of-type,
+#editProfile form p:last-of-type {
+	padding-top: 30px;
+}
+
+/* -- GIFT LIST -- */
+
+#giftList {
+	position: relative;
+	clear: both;
+	border-right: solid 1px #e3e1e4;	   
+	box-shadow: 10px -3px 5px #d8d7cd;
+	margin-bottom: 50px; /*pushed the footer down lower*/
+}
+#giftList h1 {
+	margin-top: 30px;
+	text-transform: uppercase;
+}
+
+#giftList form {
+	position: absolute; right: 160px; top: -2px;
+ 	padding: 20px 10px 10px 10px;
+}
+
+#giftList table {
+	width: 100%;
+	color:#4e226d;
+	border: 1px solid #512670;
+	border-collapse: collapse;
+}
+#contact table {
+	width: 70%;
+	color:#4e226d;
+	border: 1px solid #512670;
+	border-collapse: collapse;
+	/*padding-bottom: 40px;*/
+}
+
+#giftList table th, #contact table th {
+	text-align: left;
+	padding: 8px 0px 0px 5px;
+	font-size: 1.4em;
+	border: 1px solid #ac9ab9;
+	background: #d3c8da;
+}
+#giftList table th span {
+	color: #7a5992;
+	opacity: .6;	
+}
+#giftList table th:first-of-type,
+#contact table th:first-of-type {
+	padding-left: 15px;
+}
+#giftList table td,
+#contact table td{
+	font-size: .9em;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+	padding: 5px 0px 3px 5px;
+	border: 1px solid #dddddd;
+	background: #fdfaff;
+}
+#giftList table td:first-of-type,
+#contact table td:first-of-type {
+	padding-left: 15px;
+}
+
+#giftList table a{
+	color: #568d81;
+}
+#giftList table tr:nth-child(2n) {/*not working*/
+	background: #f8f3fb;
+}
+
+/* -- ADD GIFTS-- */
+
+#addGift {
+	margin-top: 30px;
+	background: #fdfaff;
+	border: solid 1px #ccc;
+	position: relative;
+	box-shadow: 10px -3px 5px #d8d7cd;
+}
+
+/* -- ADD EVENTS-- */
+
+#addEvent {
+	background: #fdfaff;
+	height: 460px;  /*should I have this? */
+	border-right: solid 1px #e3e1e4;	   
+	box-shadow: 10px -3px 5px #d8d7cd;
+	margin-bottom: 50px; /*pushed the footer down lower*/
+}
+#addEvent h1 {
+	text-transform: uppercase;
+}
+
+#addEvent form {
+	/*position: relative;*/
+	padding: 20px;
+	width: 66.5%;
+	float: left;
+}
+
+#addEvent form p{
+	font-size: .8em; 
+	text-transform:uppercase;
+	padding: 10px 0px 0px 0px;	/*padding between text fields*/
+}
+
+#addEvent p label{
+	width: 15%;
+	color: #7a5992;
+	padding-top: 5px;
+	float: left;
+}
+
+#addEvent form input {
+	padding: 10px; /*height of text field*/
+	margin: 0px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;	
+}
+#addEvent form input:focus, textarea:focus {
+    outline: none; /*gets rid of the blue glow*/
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* Standard syntax */
+}
+
+#addEvent form p:last-of-type{
+padding-top: 50px;
+	
+}
+#addEvent p img {
+	width: 31.5%;
+	padding-top: 20px;
+	float: left;
+}
+
+
+
+
+/* --------------------------------------------- */
+/* -- FORMS -- */
+/* --------------------------------------------- */
+
+[type=submit] { /* Login btn */
+	color: #7a5992;
+	font-size: .8em;
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* Standard syntax */
+	
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 5px;	/* "border-radius" always comes last when listing borders for all browser views */
+	
+	border: 1px solid #9d87ad;
+}
+
+#registration [type=submit] { /*submit btn for "create an account"*/
+	font-size: 1.1em;
+	padding-left: 35px; /*padding on each side of "submit"*/
+	padding-right: 35px;
+	background: -webkit-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 0%, #e3dbe8 100%); /* Standard syntax */
+}
+
+
+/* --------------------------------------------- */
+/* -- FOOTER -- */
+/* --------------------------------------------- */
+
+footer{ 	
+	background: #ece0be;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+footer ul li {
+	float: left; 
+	padding: 5px;
+	border-right: solid 1px #ccc;
+	list-style-type: none;
+	color: #888888;
+}
+footer ul li:last-of-type { 
+	border-right: none; 
+}
+footer a { 
+	color:#4e226d; 
+}
+footer span { 
+	font-family: arial; 
+	display: inline-block;
+}
+
+
+
+
+
+
+
+
