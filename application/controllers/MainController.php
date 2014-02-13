@@ -70,43 +70,7 @@ class MainController extends CI_Controller {
 				),
 			);
 		}
-		//edit profile likes & dislikes 
-		 else if ($this->input->post('editSave') === 'Save'){
-	
-			$config = array (
-				array ( 
-					'field' => 'clothes',
-					'label' => 'Clothes Style',
-					'rules' => 'trim|xss_clean',
-				),
-				array (
-					'field' => 'food',
-					'label' => 'Food Style',
-					'rules' => 'trim|xss_clean',
-				),
-				array (
-					'field' => 'movies',
-					'label' => 'Movie Genre',
-					'rules' => 'trim|xss_clean',  
-				),
-				array (
-					'field' => 'hobbies',
-					'label' => 'Hobbies',
-					'rules' => 'trim|xss_clean', 
-				),
-				array (
-					'field' => 'other',
-					'label' => 'Other',
-					'rules' => 'trim|xss_clean',
-				),
-				array (
-					'field' => 'dislikes',
-					'label' => 'Dislikes',
-					'rules' => 'trim|xss_clean',
-				),
-			);
 		
-		}
 		//adding a gift item
 		 else if ($this->input->post('addGift') === 'Add Gift'){
 	
@@ -158,6 +122,7 @@ class MainController extends CI_Controller {
 					
 					// Go to Group Page
 					redirect( base_url().'groupHome', 'refresh');
+					//redirect( base_url().'userProfile', 'refresh');
 					exit();				
 			} 
 			else if ($this->input->post('submit') === 'Submit') {
@@ -176,22 +141,7 @@ class MainController extends CI_Controller {
 				exit();	
 		
 			}					
-			//edit profile likes & dislikes 
-			else if ($this->input->post('editSave') === 'Save') {
 			
-				$likes = array( 
-				'likes_clothes' => $this->input->post('clothes'), 
-				'likes_food' => $this->input->post('food'),
-				'likes_movies' => $this->input->post('movies'),
-				'likes_hobbies' => $this->input->post('hobbies'),
-				'likes_other' => $this->input->post('other'),
-				'dislikes' => $this->input->post('dislikes'),
-				);
-			
-				$this->MainModel->editPro($likes);
-				redirect( base_url().'editProfile', 'refresh');
-				exit();		
-			}//end if		
 			else if ($this->input->post('addGift') === 'Add Gift') {
 			
 				$addItem = array( 
@@ -244,16 +194,70 @@ class MainController extends CI_Controller {
 	
 	public function editProfile(){
 
+		//edit profile likes & dislikes 
+		 if ($this->input->post('editSave') === 'Save'){
+	
+			$config = array (
+				array ( 
+					'field' => 'clothes',
+					'label' => 'Clothes Style',
+					'rules' => 'trim|xss_clean',
+				),
+				array (
+					'field' => 'food',
+					'label' => 'Food Style',
+					'rules' => 'trim|xss_clean',
+				),
+				array (
+					'field' => 'movies',
+					'label' => 'Movie Genre',
+					'rules' => 'trim|xss_clean',  
+				),
+				array (
+					'field' => 'hobbies',
+					'label' => 'Hobbies',
+					'rules' => 'trim|xss_clean', 
+				),
+				array (
+					'field' => 'other',
+					'label' => 'Other',
+					'rules' => 'trim|xss_clean',
+				),
+				array (
+					'field' => 'dislikes',
+					'label' => 'Dislikes',
+					'rules' => 'trim|xss_clean',
+				),
+			);
+		
+		}
+
+		if ($this->input->post('editSave') === 'Save') {
+		
+			$likes = array( 
+				'likes_clothes' => $this->input->post('clothes'), 
+				'likes_food' => $this->input->post('food'),
+				'likes_movies' => $this->input->post('movies'),
+				'likes_hobbies' => $this->input->post('hobbies'),
+				'likes_other' => $this->input->post('other'),
+				'dislikes' => $this->input->post('dislikes'),
+			);
+		
+		
+			// Edit User
+			$this->MainModel->editPro($likes, $this->session->userdata('userId'));
+		}
+		
+		// Get User
+		//$data['user'] = ;	
+			
 		$data['title'] = "Edit Profile: Perfect For Me";
-		
-		//$userId =  $this->uri->segment(2);
-		//$data['edit'] = $this->MainModel->editPro($userId);
-		
 		$this->load->view('header', $data); 
 		$this->load->view('editProfile', $data); 
 		$this->load->view('footer');
 	
 	}
+	
 	public function allEvents(){
 		$data['title'] = "All Events: Perfect For Me";
 		$data['events'] = $this->MainModel->events();

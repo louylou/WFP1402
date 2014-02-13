@@ -26,18 +26,20 @@
 			echo form_error('eventTitle');
 			echo form_input($data, set_value('eventTitle')); ?>
 		</p>
-		<!--<p>
-			<?php
-			$data = array(
+		<p>
+			<?php			
+			$options = array(
+				'' => 'Please Choose An Event Type',
 				'birthday' => 'Birthday',
-				'grad' => 'Graduation',
-				'sParty' => 'Special Party',
-				'hParty' => 'Holiday Party',			
+				'graduation' => 'Graduation',
+				'special' => 'Special Party',
+				'holiday' => 'Holiday Party',			
 			);
-			//echo form_label('Event Type:', 'lastName');
-			//echo form_error('');
-			echo form_dropdown($data, 'birthday'); ?>
-		</p>-->
+			echo form_label('Event Type:', 'eventType');
+			echo form_error('eventType');
+			echo form_dropdown('eventType', $options); //if no error add ,'special' after $options 
+			?>
+		</p>
 		<p>
 			<?php
 			$data = array(
@@ -71,33 +73,40 @@
 				'name' => 'startTime',
 				'id' => 'startTime',
 				'placeholder' => '00:00',
-				'size' => '15'
+				'size' => '5'
 			);
 			echo form_label('Start Time:', 'startTime');
 			echo form_error('startTime');
-			echo form_input($data, set_value('startTime')); ?>
+			echo form_input($data, set_value('startTime')); 
 			
-		<!--	<?php
-			$data = array(
-				'am' => 'AM',
-				'pm' => 'PM',
+			$am = array(
+				'Am' => 'AM',
+				'Pm' => 'PM',			
 			);
-			//echo form_label('Event Type:', 'lastName');
-			//echo form_error('');
-			echo form_dropdown($data, 'AM'); 
-			?>-->
+			echo form_error('am');
+			echo form_dropdown('am', $am); 
+			?>
 		</p>
+		
 		<p>
 			<?php
 			$data = array(
 				'name' => 'endTime',
 				'id' => 'endTime',
 				'placeholder' => '00:00',
-				'size' => '15'
+				'size' => '5'
 			);
 			echo form_label('End Time:', 'endTime');
 			echo form_error('endTime');
-			echo form_input($data, set_value('endTime')); ?>
+			echo form_input($data, set_value('endTime')); 
+			
+			$pm = array(
+				'Am' => 'AM',
+				'Pm' => 'PM',			
+			);
+			echo form_error('pm');
+			echo form_dropdown('pm', $pm); 
+			?>
 		</p>
 	
 		<p>

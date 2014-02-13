@@ -1,5 +1,13 @@
 <!-- This the Group Home Content, Profile list, Calendar & last Resort -->
 
+<section id="groups">
+	<ul>
+		<li><a href=''>Create a Group</a></li>
+		<li><a href=''>Join a Group</a></li>
+	</ul>
+</section>
+
+
 <section>
 	<div id='profileList'>		
 	<h1>ALL GIFT PROFILES</h1>
@@ -33,9 +41,7 @@
 		<p><a href='<?php echo base_url(); ?>allEvents'>View All </a></p>
 
 		<ul>	
-		<?php 
-		//print_r($events);
-		
+		<?php 		
 		foreach ($events as $event):
 			
 			$link = base_url()."profile/".$event['event_user_id'];

@@ -8,18 +8,25 @@
 
 <section id="editProfile">
 		
-	<h1>Hannah Elizabeth Davis</h1>
+	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
 	<p>Upload New Photo <span>(295px X 295px)</span> - <a href="">Choose File</a></p>
 	
-	<?php echo form_open(base_url()); ?>
+	<?php echo form_open( base_url()."editProfile" ); ?>
 	<legend>Add/Delete Your Likes & Dislikes</legend>
 		<p>
 			<?php
+			
+			/*
+			if ($user['likes_clothes'] != "") {
+				$placeholder = $user['likes_clothes']; //info from db
+			} else $placeholder = "ex: Hipster, BoHo Chic, Preppy...";
+			*/
+			
 			$data = array(
 				'name' => 'clothes',
 				'id' => 'clothes',
-				'placeholder' => 'ex: Hipster, BoHo Chic, Preppy...',
+				'placeholder' => 'ex: Hipster, BoHo Chic, Preppy...', //$placeholder,
 				'size' => '90'			
 			);
 			echo form_label('Clothes Style:', 'clothes');

@@ -45,7 +45,7 @@
 					<?php
 					$s = $this->session->userdata('loggedIn'); 
 					//$e = $this->session->userdata('email'); 
-					$helloUser = $this->session->userdata('username');
+					$helloUser = $this->session->userdata('username');//displays correct user name
 					if (!$s){ //if user session isnt logged in, show the login form
 						$data = array(
 							'name' => 'email',
@@ -59,7 +59,7 @@
 						echo form_error('email');
 						echo form_input($data, set_value('email')); 
 					} else {
-						echo "Hello, ".ucfirst($helloUser)." !";
+						echo "<h4>Welcome, ".ucwords($helloUser)."!</h4>";
 						
 					} ?>
 				</p>

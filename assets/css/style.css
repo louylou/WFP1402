@@ -157,7 +157,14 @@ h3 {
 	color: #4e226d;
 	text-transform: uppercase;
 }
-h4 {}
+h4 {
+	text-align: right;
+	padding-top:30px;
+	/*padding-left: 20px;*/
+	font-size: 1.2em;
+	color: #4e226d;
+}
+
 h5 {}
 
 p { padding-bottom: 20px; }
@@ -173,13 +180,24 @@ p { padding-bottom: 20px; }
 	overflow: hidden;
 	opacity: .4;
 }
-#breadcrumbs li {
+#groups {
+	padding: 30px 0px 15px 0px;
+	overflow: hidden;
+	opacity: .6;
+}
+
+#breadcrumbs li, #groups li {
 	list-style: none;
 	padding-left: 10px;
 	float: left;
-}
+} 
+
 #breadcrumbs li:first-of-type {
 	padding-left: 0px;
+}
+ #groups li:first-of-type {
+	padding-left: 0px;
+	padding-right: 25px;
 }
 #breadcrumbs ul li a { 
 	color: #4e226d;
@@ -188,18 +206,20 @@ p { padding-bottom: 20px; }
 	display: block;
 	float: left;
 }
+#groups ul li a { 
+	color: #568d81;
+	font-size: 1.2em;
+	text-decoration: none; 
+	position: relative; 
+	display: block;
+	float: left;
+}
 
-.birthday {
-	/*background: blue;*/
-	background: url ('../images/cakeIcon.jpg') no-repeat left top;
-	/*position: absolute; left 0px; top 0px;	*/
-}
-.graduation {
-	background-image: url ('../images/hat.jpg');
-}
-.party {
-	background-image: url ('../images/hats.jpg');
-}
+
+/* -- ICONS FOR CAL -- */
+.birthday {	background: url('../images/cakeIcon.jpg') no-repeat 20px 15px;}
+.graduation { background-image: url('../images/hat.jpg'); }
+.party { background-image: url('../images/hats.jpg'); }
 .holiday {}
 
 
@@ -300,7 +320,6 @@ p { padding-bottom: 20px; }
 /* -- PROFILE LIST -- */
 
 #profileList, #calendar {
-	margin-top: 50px;
 	float: left; 
 	margin-bottom: 50px; /*pushed the footer down lower*/
 	box-shadow: 10px -3px 5px #d8d7cd;
@@ -425,7 +444,6 @@ p { padding-bottom: 20px; }
 	position: absolute; right: 0px; top: 20px;
  	padding: 0px 10px 0px 0px;
 	color: #d4c5e1;
-	background: none;
 	text-decoration: none;
 	text-transform:uppercase;	
 	font-size: .8em;
@@ -447,7 +465,7 @@ p { padding-bottom: 20px; }
 
 #calendar ul li:nth-child(2n), 
 #allEvents ul li:nth-child(2n) {
-	background: #f8f3fb;
+	background-color: #f8f3fb;
 
 }
 #calendar ul li a {

@@ -106,13 +106,18 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		} else return false;	
 	
 	}
-	public function editPro($likes,$addItem, $userId = '') {
+	public function editPro($likes, $userId = '') {
+		
 		
 		if ($userId != ''){
 			$this->db->where('user_id', $userId);
 		}
-		$this->db->update('users',$likes); //insert
-		$this->db->update('users',$addItem);
+		$this->db->update('users', $likes); //insert
+		
+		
+		return $this->db->last_query();
+		
+		//$this->db->update('users',$addItem);
 
 		
 		
