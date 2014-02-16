@@ -79,7 +79,7 @@
 		?> 	
 			<tr>
 				<td><?php echo $gift['gift_name']; ?></td>
-				<td><?php echo $gift['gift_price']; ?></td>
+				<td>$<?php echo $gift['gift_price']; ?></td>
 				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
 			</tr>
 		<?php endforeach; ?>

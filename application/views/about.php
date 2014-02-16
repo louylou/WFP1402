@@ -1,15 +1,9 @@
-<section id="breadcrumbs">
-	<ul>
-		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
-		<li><a href="<?php echo base_url(); ?>about"> About</a></li>
-	</ul>
-</section>
-
 <section id="about">
 
 	<h1>About Us</h1>
 
-		<p><img src="" alt=""/></p>
+		<p><img src="<?php echo base_url(); ?>assets/images/giving.jpg" alt="Man walking through doorway while handing a giftbag to a woman smiling."/>
+		</p>
 		<p>
 		Perfect For Me is the ideal online way to shop for the perfect
 		gift. It allows both the Gifter and Giftee to get what they want.

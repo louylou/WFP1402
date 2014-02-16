@@ -157,6 +157,7 @@ h3 {
 	color: #4e226d;
 	text-transform: uppercase;
 }
+
 h4 {
 	text-align: right;
 	padding-top:30px;
@@ -439,16 +440,39 @@ p { padding-bottom: 20px; }
 	box-shadow: 10px -3px 5px #d8d7cd;
 	background: #fdfaff;
 }
+
+ #about, #terms, #contact {
+ 	margin-top: 50px;
+ }
+
+#terms h3:first-of-type {
+	padding-top: 20px;
+}
+#contact h3 {
+	padding-left: 20px;
+	width: 65%;
+	float: left;
+}
+
+#about p:first-of-type { width: 31%; }
+#contact p:first-of-type { width: 35%; }
+
+
+#about p {
+	padding:20px;
+	width: 69%;
+	float: left;
+}
+#contact p {
+	padding:20px;
+	width: 65%;
+	float: left;
+}
+
 #calendar p { padding-bottom:0px; }
-#about p, #terms p { 
-	padding:20px; 
-}
-#contact p:nth-child(2) { 
-	padding:20px; 
-}
-#contact p { 
-	padding:5px 0px 0px 5px; 
-}
+#terms p { padding:20px; }
+
+
 #contact p:last-of-type { 
 	padding-bottom: 20px; 
 }
@@ -719,7 +743,7 @@ p { padding-bottom: 20px; }
 	border-collapse: collapse;
 }
 #contact table {
-	width: 70%;
+	width: 55%;
 	color:#4e226d;
 	border: 1px solid #512670;
 	border-collapse: collapse;

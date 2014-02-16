@@ -1,10 +1,3 @@
-<section id="breadcrumbs">
-	<ul>
-		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
-		<li><a href="<?php echo base_url(); ?>terms">Terms</a></li>
-	</ul>
-</section>
-
 <section id="terms">
 
 	<h1>Terms On Using Perfect For Me</h1>
