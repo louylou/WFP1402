@@ -146,7 +146,7 @@ class MainController extends CI_Controller {
 				'gift_url' => $this->input->post('url'),
 				);
 			
-				$this->MainModel->editPro($addItem,$addItem);
+				$this->MainModel->editPro($addItem,$addItem);//fixxxxxxxxxx
 				redirect( base_url().'editProfile', 'refresh');
 				exit();		
 			}//end if		
@@ -166,9 +166,11 @@ class MainController extends CI_Controller {
 	}
 	public function groupHome(){
 		
+		
+		$userId =  $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
-		$data['users'] = $this->MainModel->homeProfiles();
-		$data['events'] = $this->MainModel->events();
+		$data['users'] = $this->MainModel->profileInfo($userId); //homeProfiles()
+		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
 		
 		$this->load->view('header', $data); 
 		$this->load->view('groupHome', $data); 
@@ -178,7 +180,7 @@ class MainController extends CI_Controller {
 	public function userProfile(){
 	
 		$data['title'] = "User Profile: Perfect For Me";
-		$userId =  $this->uri->segment(2);  //the 2 stands for the userID in the URL ex: www.domain/function/2
+		$userId = $this->uri->segment(2);  //the 2 stands for the userID in the URL ex: www.domain/function/2
 		$data['proInfo'] = $this->MainModel->profileInfo($userId);
 		
 		
@@ -278,8 +280,73 @@ class MainController extends CI_Controller {
 	
 	}
 	public function addEvents(){
+		 if ($this->input->post('addEvent') === 'addEvent'){
+	
+			$config = array (
+				array ( 
+					'field' => 'eventTitle',
+					'label' => 'Event Title',
+					'rules' => 'trim|required|xss_clean',
+				),
+				array (
+					'field' => 'eventType',
+					'label' => 'Event Type',
+					'rules' => 'required|xss_clean',
+				),
+				array (
+					'field' => 'location',
+					'label' => 'Location',
+					'rules' => 'trim|required|xss_clean',  
+				),
+				array (
+					'field' => 'date',
+					'label' => 'Date',
+					'rules' => 'trim|required|xss_clean', 
+				),
+				array (
+					'field' => 'startTime',
+					'label' => 'Start Time',
+					'rules' => 'trim|required|xss_clean',
+				),
+				array (
+					'field' => 'am',
+					'label' => '',
+					'rules' => 'required|xss_clean',
+				),
+				array (
+					'field' => 'endTime',
+					'label' => 'End Time',
+					'rules' => 'trim|required|xss_clean',
+				),
+				array (
+					'field' => 'pm',
+					'label' => '',
+					'rules' => 'required|xss_clean',
+				),
+			);		
+		}
+		if ($this->input->post('addEvent') === 'Add Event') {
+	
+			$addEvnt = array( 
+				'event_title' => $this->input->post('eventTitle'), 
+				'event_date' => $this->input->post('date'),
+				'event_location' => $this->input->post('location'),
+				'event_starttime' => $this->input->post('startTime'),
+				'event_endtime' => $this->input->post('endTime'),
+			);				
+
+			$this->MainModel->addEvnts($addEvnt, $this->session->userdata('userId')); //, $this->session->userdata('userId'
+		}else { //not needed		
+			// Set Error Message
+			$data['error'] = "Please Enter Correct Event Info.";		
+		}
+		
+		$userId =  $this->uri->segment(2); 
+		$data['proInfo'] = $this->MainModel->addEvnts($userId);
+		
+
+	
 		$data['title'] = "Add An Event: Perfect For Me";
-		//$data['proList'] = $this->MainModel->homeProfiles();
 		
 		$this->load->view('header', $data); 
 		$this->load->view('addEvent', $data); 

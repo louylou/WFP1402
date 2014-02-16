@@ -58,27 +58,13 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$this->db->insert('users',$user_info);
 	}
 	
-	public function homeProfiles() {
-		
-		//SELECT user_fullname From the users table
-		$this->db->select('user_fullname, user_id');
-		$this->db->from('users'); 
-		
-		$result = $this->db->get();
-		
-		if ($result->num_rows() > 0) {
-		
-			return $result->result_array();
-			
-		} else return false;	
-	
-	}
-	
 	public function events() {	
-		
-		$this->db->select('event_title, event_date, event_user_id, user_fullname');
-		$this->db->from('events'); //SELECT user_fullname From the users table
+				
+		//VVV original
+		$this->db->select('event_title, event_date, event_user_id, event_starttime, event_endtime, event_location, user_fullname, user_id');
+		$this->db->from('events'); 
 		$this->db->join('users', 'users.user_id = events.event_user_id');
+				
 		$result = $this->db->get();
 		
 		if ($result->num_rows() > 0) {
@@ -86,12 +72,33 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			return $result->result_array();
 			
 		} else return false;
+		//^^^^^ original					
+	}
+	
+	public function addEvnts($addEvnt, $userId = '') {
+	
+		$this->db->select('user_fullname, user_id');
+		$this->db->from('users');
 		
+		if ($userId != ''){
+			$this->db->where('user_id', $userId);
 			
-	}//events()
+			$this->db->update('events', $addEvnt); 				
+			return $this->db->last_query();			
+		} 
+		
+		$fullNameDisplay= $this->db->get(); 
+
+		if ($fullNameDisplay->num_rows() > 0) { 
+				
+			return $fullNameDisplay->result_array(); 
+			
+		} else return false;		
+		
+	}
 	public function profileInfo($userId = '') {
 		
-		$this->db->select('user_fullname, user_id');
+		$this->db->select('user_fullname, user_id, gift_name, gift_price, gift_url');
 		$this->db->from('users'); 
 		
 		if ($userId != ''){
@@ -106,12 +113,30 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		} else return false;	
 	
 	}
+	/*
+	public function giftDisplay($userId = '') {
+		
+		$this->db->select('gift_name, gift_price, gift_url, user_id');
+		$this->db->from('users'); 
+		
+		if ($userId != ''){
+			$this->db->where('user_id', $userId);
+		}
+		$giftDisplay= $this->db->get(); 
+
+		if ($giftDisplay->num_rows() > 0) { 
+		
+			return $giftDisplay->result_array(); 
+			
+		} else return false;	
+	
+	}*/
+	
 	public function editPro($likes, $userId = '') {
 		
 		$this->db->select('user_fullname, user_id'); //info to display user fullname
 		$this->db->from('users');//info to display user fullname
-		
-		
+				
 		if ($userId != ''){
 			$this->db->where('user_id', $userId);
 			

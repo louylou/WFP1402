@@ -21,10 +21,14 @@
 			$link = base_url()."profile/".$event['event_user_id'];
 			$date = date("m/d", strtotime( $event['event_date']));
 			$day = date("D", strtotime( $event['event_date']));
-			 
+			$starttime = date("g:i", strtotime( $event['event_starttime']));
+			$endtime =date("g:i", strtotime( $event['event_endtime']));	 
 		 ?>
 				<li class='birthday'>(<?php echo $day; ?>)<?php echo '&nbsp'; ?><span><?php echo $date; ?></span> - <?php echo $event['user_fullname']; ?>
 				<a href="<?php echo $link; ?>"><?php echo $event['event_title']; ?></a>
+				<?php echo $starttime; ?> - <?php echo $endtime; ?>
+				<?php echo '&nbsp'; ?>
+				<?php echo $event['event_location']; ?>
 				</li>
 	
 			<?php endforeach; ?>

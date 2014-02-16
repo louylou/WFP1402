@@ -2,6 +2,7 @@
 <ul>
 	<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> <!--links call the functions in the controller--> 
 	<li><a href="<?php echo base_url(); ?>userProfile"> User Profile</a></li>
+	<!--change ^^^^ to show correct user id in URL-->
 </ul>
 </section>
 
@@ -13,13 +14,15 @@
 	
 	
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
-	
-	<!--<?php $link = base_url()."editProfile/".$proInfo['user_id']; ?>
+
+
+	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
+		
 	<p><a href="<?php echo $link; ?>">Edit Profile ( Upload Photo, Add Gifts )</a></p>
+	<!--
+	<?php echo base_url().'editProfile/'.$userId; ?>
+	"<?php echo base_url(); ?>editProfile"
 	-->
-	<p><a href="<?php echo base_url(); ?>editProfile">Edit Profile ( Upload Photo, Add Gifts )</a></p>
-	
-	
 	<form>
 		<fieldset>
 			<legend>Likes & Dislikes</legend>				
@@ -70,11 +73,16 @@
 				<th>Price</th>
 				<th>URL <span>(optional)</span></th>
 			</tr>
-			<tr>
-				<td>Mountain Bike</td>
-				<td>$369.99</td>
-				<td><a href="">Link to specific Item</a></td>
-			</tr>
 			
+		<?php foreach ($proInfo as $gift): 
+		$link= $gift['gift_url']; 
+		?> 	
+			<tr>
+				<td><?php echo $gift['gift_name']; ?></td>
+				<td><?php echo $gift['gift_price']; ?></td>
+				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
+			</tr>
+		<?php endforeach; ?>
+		
 		</table>
 </section>

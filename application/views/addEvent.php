@@ -10,8 +10,8 @@
 
 	<h1>Add an Event</h1>
 	
-	<?php echo form_open(base_url()); ?>
-	<legend>Create An Account</legend>
+	<?php echo form_open(base_url()."addEvents"); ?> <!--has an 's'-->
+	<legend>Hi <?php echo $proInfo[0]['user_fullname']; ?>, create an event to remind and celebrate with the group.</legend>
 	
 		<p>
 			<?php
@@ -72,8 +72,8 @@
 			$data = array(
 				'name' => 'startTime',
 				'id' => 'startTime',
-				'placeholder' => '00:00',
-				'size' => '5'
+				'placeholder' => 'hh:mm:ss',
+				'size' => '15'
 			);
 			echo form_label('Start Time:', 'startTime');
 			echo form_error('startTime');
@@ -93,8 +93,8 @@
 			$data = array(
 				'name' => 'endTime',
 				'id' => 'endTime',
-				'placeholder' => '00:00',
-				'size' => '5'
+				'placeholder' => 'hh:mm:ss',
+				'size' => '15'
 			);
 			echo form_label('End Time:', 'endTime');
 			echo form_error('endTime');
@@ -112,10 +112,10 @@
 		<p>
 			<?php
 			$data = array(
-				'name' => 'submit',
-				'id' => 'submit'
+				'name' => 'addEvent',
+				'id' => 'addEvent'
 			);
-			echo form_submit($data, 'Submit'); ?>
+			echo form_submit($data, 'Add Event'); ?>
 		</p>
 	
 	<?php echo form_close(); ?>
@@ -123,56 +123,3 @@
 	
 </section>	
 	
-<!--	
-		<form>
-			<fieldset>
-			
-				<p>
-					<label for="eventTitle">Event Title:</label>
-					<input type="text" name="eventTitle" id="eventTitle" placeholder="ex: 25th Birthday!" min="1" max="50" size="93">
-				</p>
-				<p>
-					<label for="eventType">Event Type:</label>
-					<select>
-						  <option value="birthday">Birthday</option>
-						  <option value="Graduation">Graduation</option>
-						  <option value="party">Special Party</option>
-						  <option value="holiday">Holiday Party</option>
-					</select>
-				</p>
-				<p>
-					<label for="location">Location:</label>
-					<input type="text" name="location" id="location" placeholder="ex: 1001 Somestreet, city, state, zip" min="1" max="100" size="93">
-				</p>
-				<p>
-					<label for="date">Date: </label>
-					<input type="text" name="date" id="date" placeholder="ex: 04/25/14" min="1" max="10" size="10">
-				</p>
-				<p>
-					<label for="time">Time Start: </label>
-					<input type="text" name="time" id="time" placeholder="00:00" min="1" max="5" size="3">
-					
-					<select>
-						  <option value="am">AM</option>
-						  <option value="pm">PM</option>
-					</select>
-				</p>
-				<p>
-					<label for="timeEnd">Time End: </label>
-					<input type="text" name="timeEnd" id="timeEnd" placeholder="00:00" min="1" max="5" size="3">
-
-					<select>
-						  <option value="am">AM</option>
-						  <option value="pm">PM</option>
-					</select>
-				</p>	
-				<p>	
-					<input type="submit" name="submit" value="Add Event" />
-				</p>
-			</fieldset>
-		</form>	
-		<p><img src="<?php echo base_url(); ?>assets/images/eventPic.jpg"/></p>
-
-</section>
--->
-

@@ -46,7 +46,7 @@ $route['about'] = 'MainController/about';
 $route['contact'] = 'MainController/contact';
 $route['terms'] = 'MainController/terms';
 $route['profile/(:num)'] = 'MainController/userProfile/$1';
-$route['editProfile'] = 'MainController/editProfile'; // add(:num) at the end of editProfile
+$route['editProfile/(:num)'] = 'MainController/editProfile/$1'; // add(:num) at the end of editProfile
 $route['allEvents'] = 'MainController/allEvents'; //add (:num) at the end
 $route['addEvents'] = 'MainController/addEvents'; //add (:num) at the end
 

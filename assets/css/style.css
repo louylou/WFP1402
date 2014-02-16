@@ -331,11 +331,24 @@ p { padding-bottom: 20px; }
 	margin-right: 40px;
 	width: 50%;	
 }
-#profileList ul { text-transform:uppercase;	}
+#profileList ul, 
+#calendar ol  { 
+	text-transform:uppercase;	
+}
 #profileList ul li {
 	position: relative; padding: 20px 20px 20px 110px;
 	font-size: 1.500em; /*24pt*/	
 }
+ 
+#calendar ol li {
+	position: relative; padding: 0px;
+	font-size: .8em;
+}
+#calendar ol li a {
+	color: #d3c8da;
+	text-decoration: none;
+}
+
 #profileList ul li:nth-child(2n) { background: #f8f3fb; }
 #profileList ul li img {
 	display: block; position: absolute; left: 15px; top: 15px;
@@ -349,6 +362,7 @@ p { padding-bottom: 20px; }
 
 /* -- Filters -- */
 #profileList ul:first-of-type, 
+#calendar ol, 
 #giftList ul:first-of-type,
 #allEvents p {
 	position: absolute; right: 0px; top: 0px;
@@ -357,7 +371,8 @@ p { padding-bottom: 20px; }
 }
 
 #profileList ul:first-of-type li,
-#giftList ul:first-of-type li {
+#giftList ul:first-of-type li,
+#calendar ol:first-of-type li  {
 	font-size: .8em;
 	padding: 0px 5px;
 	float: left;
@@ -365,6 +380,7 @@ p { padding-bottom: 20px; }
 	text-transform: uppercase;
 	letter-spacing: .02em;
 }
+
 #allEvents p:first-of-type {
 	padding-right: 130px;
 }
@@ -760,7 +776,6 @@ p { padding-bottom: 20px; }
 
 #addEvent {
 	background: #fdfaff;
-	height: 460px;  /*should I have this? */
 	border-right: solid 1px #e3e1e4;	   
 	box-shadow: 10px -3px 5px #d8d7cd;
 	margin-bottom: 50px; /*pushed the footer down lower*/
@@ -811,7 +826,7 @@ p { padding-bottom: 20px; }
 }
 
 #addEvent form p:last-of-type{
-padding-top: 50px;
+padding-top: 30px;
 	
 }
 #addEvent p img {

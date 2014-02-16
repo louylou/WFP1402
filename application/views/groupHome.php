@@ -37,14 +37,19 @@
 	</div> <!--end profileList-->	
 
 	<div id='calendar'>	
-	<h1>SPECIAL EVENTS CALENDAR</h1>
-		<p><a href='<?php echo base_url(); ?>allEvents'>View All </a></p>
+	<h1>EVENTS CALENDAR</h1>
+	
+		<ol>
+		<li><a href='<?php echo base_url(); ?>addEvents'>Add Event</a></li>
+		<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
+		</ol>
+		<!--<p><a href='<?php echo base_url(); ?>allEvents'>View All </a></p>-->
 
 		<ul>	
 		<?php 		
 		foreach ($events as $event):
 			
-			$link = base_url()."profile/".$event['event_user_id'];
+			$link = base_url()."profile/".$event['event_user_id'];//should it be user_id instead?
 			$date = date("m/d", strtotime( $event['event_date']));
 			$day = date("D", strtotime( $event['event_date']));
 			 
