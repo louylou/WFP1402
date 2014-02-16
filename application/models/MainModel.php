@@ -113,24 +113,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		} else return false;	
 	
 	}
-	/*
-	public function giftDisplay($userId = '') {
-		
-		$this->db->select('gift_name, gift_price, gift_url, user_id');
-		$this->db->from('users'); 
-		
-		if ($userId != ''){
-			$this->db->where('user_id', $userId);
-		}
-		$giftDisplay= $this->db->get(); 
-
-		if ($giftDisplay->num_rows() > 0) { 
-		
-			return $giftDisplay->result_array(); 
-			
-		} else return false;	
-	
-	}*/
 	
 	public function editPro($likes, $userId = '') {
 		
@@ -156,13 +138,30 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function addGifts($gifts, $userId = '') {
 	
+		$this->db->select('user_fullname, user_id, gift_id, gift_name, gift_price, gift_url'); 
+		$this->db->from('gifts');
+		$this->db->join('users', 'users.user_id = gifts.gift_id');
+	
+	
 		if ($userId != ''){
 			$this->db->where('user_id', $userId);
 			
-			$this->db->update('users',$gifts); //puts input field data into DB 				
-			return $this->db->last_query();			
+			//$this->db->update('users',$gifts); //puts input field data into DB 				
+			//return $this->db->last_query();		
 		}
-	
+		
+		//doesnt know what 'user_id' is.... probably should call the 'users' table instead of 'gifts'
+		//$this->db->update('gifts', $gifts); //puts input field data into DB 				
+		//return $this->db->last_query();
+		
+		
+		$result = $this->db->get();
+		
+		if ($result->num_rows() > 0) {
+		
+			return $result->result_array();
+			
+		} else return false;
 		
 	}
 	

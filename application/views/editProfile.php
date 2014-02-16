@@ -23,7 +23,7 @@
 	<!-- add upload photo here-->
 	
 		
-	<?php echo form_open( base_url()."editProfile" ); ?>
+	<?php echo form_open( base_url()."editProfile/".$proInfo[0]['user_id'] ); ?>
 	<legend>Add/Delete Your Likes & Dislikes</legend>
 		<p>
 			<?php
@@ -120,7 +120,7 @@
 </section><!-- end profileLikes -->		
 
 <section id="addGift">
-<?php echo form_open( base_url()."editProfile" ); ?>
+<?php echo form_open( base_url()."editProfile/".$proInfo[0]['user_id'] ); ?>
 	<legend>Add Gift Items To Your Gift List</legend>
 		<p>
 			<?php

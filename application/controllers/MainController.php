@@ -263,6 +263,8 @@ class MainController extends CI_Controller {
 		$userId =  $this->uri->segment(2);  //the 2 stands for the userID in the URL ex: www.domain/function/2
 		$data['proInfo'] = $this->MainModel->editPro($userId);
 	
+		//var_dump($data['proInfo']);
+		
 		$data['title'] = "Edit Profile: Perfect For Me";
 		
 		$this->load->view('header', $data); 
