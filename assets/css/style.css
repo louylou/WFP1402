@@ -162,8 +162,8 @@ h3 {
 }
 
 h4 {
-	text-align: right;
-	padding-top:30px;
+	text-align: left;
+	padding-top:15px;
 	/*padding-left: 20px;*/
 	font-size: 1.2em;
 	color: #4e226d;
@@ -801,27 +801,42 @@ p { padding-bottom: 20px; }
 
 /* -- ADD EVENTS-- */
 
-#addEvent {
+#addEvent, #groupPage {
 	background: #fdfaff;
 	border-right: solid 1px #e3e1e4;	   
 	box-shadow: 10px -3px 5px #d8d7cd;
 	margin-bottom: 50px; /*pushed the footer down lower*/
 }
-#addEvent h1 {
+#addEvent h1, #groupPage h1 {
 	text-transform: uppercase;
 }
 
-#addEvent form {
+#addEvent form, #groupPage form {
 	/*position: relative;*/
 	padding: 20px;
 	width: 66.5%;
 	float: left;
 }
 
+#groupPage legend span {
+	color: #d3c8da;
+}
+#groupPage legend {
+	text-transform:uppercase;
+	padding: 10px 0px 10px 0px;
+	clear: both;
+}
+
 #addEvent form p{
 	font-size: .8em; 
 	text-transform:uppercase;
 	padding: 10px 0px 0px 0px;	/*padding between text fields*/
+}
+ 
+ #groupPage form p{
+	font-size: .8em; 
+	text-transform:uppercase;
+	padding: 0px;	/*padding between text fields*/
 }
 
 #addEvent p label{
@@ -830,6 +845,13 @@ p { padding-bottom: 20px; }
 	padding-top: 5px;
 	float: left;
 }
+#groupPage p label{
+	width: 21%;
+	color: #7a5992;
+	padding-top: 5px;
+	float: left;
+}
+
 
 #addEvent form input {
 	padding: 10px; /*height of text field*/
@@ -844,7 +866,22 @@ p { padding-bottom: 20px; }
 	border-radius: 5px;
 	border: 1px solid #bfafca;	
 }
-#addEvent form input:focus, textarea:focus {
+
+#groupPage form input {
+	float: left;
+	padding: 10px; /*height of text field*/
+	margin: 0px 0px 0px 10px;
+	background: -webkit-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Safari */
+	background: -o-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(180deg, #ffffff 50%, #cccccc 100%); /* Standard syntax */
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #bfafca;	
+}
+#addEvent form input:focus, textarea:focus, #groupPage form input:focus, textarea:focus {
     outline: none; /*gets rid of the blue glow*/
 	background: -webkit-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Safari */
 	background: -o-linear-gradient(180deg, #ffffff 0%, #f8f3fb 100%); /* For Opera 11.1 to 12.0 */

@@ -2,8 +2,8 @@
 
 <section id="groups">
 	<ul>
-		<li><a href=''>Create a Group</a></li>
-		<li><a href=''>Join a Group</a></li>
+		<li><a href="<?php echo base_url(); ?>groups">Create a Group</a></li>
+		<li><a href="<?php echo base_url(); ?>groups">Join a Group</a></li>
 	</ul>
 </section>
 

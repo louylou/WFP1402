@@ -70,28 +70,7 @@ class MainController extends CI_Controller {
 				),
 			);
 		}
-		
-		//adding a gift item
-		/* else if ($this->input->post('addGift') === 'Add Gift'){
 	
-			$config = array (
-				array ( 
-					'field' => 'item',
-					'label' => 'Item Name',
-					'rules' => 'required|trim|xss_clean',
-				),
-				array (
-					'field' => 'price',
-					'label' => 'Price',
-					'rules' => 'required|trim|xss_clean',
-				),
-				array (
-					'field' => 'url',
-					'label' => 'URL (optional)',
-					'rules' => 'trim|xss_clean',  
-				),
-			);
-		}*/
 		
 		//logout
 		else if ($this->input->post('logout') === 'Logout'){		
@@ -170,6 +149,15 @@ class MainController extends CI_Controller {
 		$this->load->view('groupHome', $data); 
 		$this->load->view('footer');	
 	}
+	
+	public function groups() {
+	
+		$data['title'] = "Create/Join a Group: Perfect For Me";
+		$this->load->view('header', $data); 
+		$this->load->view('groups', $data); 
+		$this->load->view('footer');
+	
+	}
 
 	public function userProfile($id){
 	
@@ -236,6 +224,7 @@ class MainController extends CI_Controller {
 					),
 				);		
 			}
+			
 			if ($this->input->post('editSave') === 'Save') {
 		
 				$likes = array( 
@@ -261,10 +250,34 @@ class MainController extends CI_Controller {
 				$this->MainModel->addGifts($gifts, $this->session->userdata('userId'));
 			
 			}
+			
+			//adding a gift item
+		/* else if ($this->input->post('addGift') === 'Add Gift'){
+	
+			$config = array (
+				array ( 
+					'field' => 'item',
+					'label' => 'Item Name',
+					'rules' => 'required|trim|xss_clean',
+				),
+				array (
+					'field' => 'price',
+					'label' => 'Price',
+					'rules' => 'required|trim|xss_clean',
+				),
+				array (
+					'field' => 'url',
+					'label' => 'URL (optional)',
+					'rules' => 'trim|xss_clean',  
+				),
+			);
+		}*/
+			
 			else { //not needed		
 				// Set Error Message
 				$data['error'] = "Please Enter Correct gift Info.";		
 			}
+				
 				
 			// Get User
 			//$data['user'] = ;				
@@ -286,9 +299,7 @@ class MainController extends CI_Controller {
 			$data['title'] = "404 Error";
 			
 			$this->load->view('header', $data);
-			$this->load->view('404', $data);
-			$this->load->view('footer'); 
-			
+			$this->load->view('404', $data);			
 		}
 	}
 	
@@ -308,9 +319,7 @@ class MainController extends CI_Controller {
 		$this->load->view('footer');	
 		
 	
-	}
-	
-	
+	}	
 	
 	public function allEvents(){
 		$data['title'] = "All Events: Perfect For Me";
@@ -321,6 +330,7 @@ class MainController extends CI_Controller {
 		$this->load->view('footer');
 	
 	}
+	
 	public function addEvents($id){
 	
 		//if ($this->session->userdata('userId') == $id) {
@@ -406,6 +416,7 @@ class MainController extends CI_Controller {
 		$this->load->view('footer');
 	
 	}
+	
 	public function contact(){
 		$data['title'] = "Contact: Perfect For Me";
 		
@@ -414,6 +425,7 @@ class MainController extends CI_Controller {
 		$this->load->view('footer');
 	
 	}
+	
 	public function terms(){
 		$data['title'] = "Terms: Perfect For Me";
 		//$data['proList'] = $this->MainModel->homeProfiles();

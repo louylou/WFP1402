@@ -42,6 +42,7 @@ $route['default_controller'] = "MainController";
 $route['404_override'] = '';
 
 $route['groupHome'] = 'MainController/groupHome';
+$route['groups'] = 'MainController/groups';
 $route['about'] = 'MainController/about';
 $route['contact'] = 'MainController/contact';
 $route['terms'] = 'MainController/terms';

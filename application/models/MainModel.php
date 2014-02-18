@@ -78,6 +78,10 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 	}
 	
+	public function groupInfo() {
+		
+	
+	}
 	
 	//want to create new group
 	//create new email
