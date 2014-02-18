@@ -1,7 +1,7 @@
 <section id="breadcrumbs">
 <ul>
 	<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> <!--links call the functions in the controller--> 
-	<li><a href="<?php echo base_url(); ?>userProfile"> User Profile</a></li>
+	<li><a href="<?php echo base_url()."profile/".$proInfo[0]['user_id']; ?>"> User Profile</a></li>
 	<!--change ^^^^ to show correct user id in URL-->
 </ul>
 </section>
@@ -15,42 +15,46 @@
 	
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
 
-
+	
 	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
-		
+	
+	<?php if ($this->session->userdata('userId') == $proInfo[0]['user_id']) { ?>
+	
 	<p><a href="<?php echo $link; ?>">Edit Profile ( Upload Photo, Add Gifts )</a></p>
-	<!--
-	<?php echo base_url().'editProfile/'.$userId; ?>
-	"<?php echo base_url(); ?>editProfile"
-	-->
+	
+	<?php } ?>
+	
 	<form>
 		<fieldset>
-			<legend>Likes & Dislikes</legend>				
+			<legend>Likes & Dislikes</legend>	
+			
+			<?php foreach ($proInfo as $like): ?> 				
 			<p>
 				<label for="clothing">Clothing Style</label>
-				<input type="text" name="clothing" id="clothing" placeholder="ex: Hipster, BoHo Chic, Preppy..." min="1" max="100" size="90" disabled>
+				<input type="text" name="clothing" id="clothing" placeholder="<?php echo $like['likes_clothes']; ?>" min="1" max="100" size="90" disabled>
 			</p>
 			<p>
 				<label for="food">Food Style</label>
-				<input type="text" name="food" id="food" placeholder="ex: Italian, Mexican, Chinese..." min="1" max="100" size="90" disabled>
+				<input type="text" name="food" id="food" placeholder="<?php echo $like['likes_food']; ?>" min="1" max="100" size="90" disabled>
 			</p>
 			<p>
 				<label for="movie">Movie Genre</label>
-				<input type="text" name="movie" id="movie" placeholder="ex: Action, Horror, Romance..." min="1" max="100" size="90" disabled>
+				<input type="text" name="movie" id="movie" placeholder="<?php echo $like['likes_movies']; ?>" min="1" max="100" size="90" disabled>
 			</p>
 			<p>
 				<label for="hobbie">Hobbies </label>
-				<input type="text" name="hobbie" id="hobbie" placeholder="ex: Hiking, Reading, Cooking..." min="1" max="100" size="90" disabled>
+				<input type="text" name="hobbie" id="hobbie" placeholder="<?php echo $like['likes_hobbies']; ?>" min="1" max="100" size="90" disabled>
 			</p>
 			<p>
 				<label for="other">Other</label>
-				<input type="text" name="other" id="other" placeholder="ex: The Lord of the Rings BluRay Collection..." min="1" max="100" size="90" disabled>
+				<input type="text" name="other" id="other" placeholder="<?php echo $like['likes_other']; ?>" min="1" max="100" size="90" disabled>
 			</p>
 			<p>
 				<label for="dislikes">Gift Dislikes </label>
-				<input type="text" name="dislikes" id="dislikes" placeholder="ex: Socks, Toothbrushes, Pink Bunny Suit... " min="1" max="100" size="90" disabled>
+				<input type="text" name="dislikes" id="dislikes" placeholder="<?php echo $like['dislikes']; ?>" min="1" max="100" size="90" disabled>
 			</p>	
-
+			<?php endforeach; ?>
+		
 		</fieldset>
 	</form>
 </section><!-- end profileLikes -->		
@@ -75,7 +79,7 @@
 			</tr>
 			
 		<?php foreach ($proInfo as $gift): 
-		$link= $gift['gift_url']; 
+			$link= $gift['gift_url']; 
 		?> 	
 			<tr>
 				<td><?php echo $gift['gift_name']; ?></td>

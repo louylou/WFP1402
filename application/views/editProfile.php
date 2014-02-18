@@ -3,10 +3,9 @@
 	<!--the [0] is making it always go to the 1st person in the array- john doe-->	
 	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
 	
-
 	<ul>
 		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
-		<!--<li><a href="<?php echo base_url()."profile/".$user['user_id'];?>"> User Profile >></a></li>-->			
+		<li><a href="<?php echo base_url()."profile/".$proInfo[0]['user_id']; ?>"> User Profile >></a></li>			
 		<li><a href="<?php echo $link; ?>">Edit Profile</a></li>
 	</ul>
 	<!--<?php echo base_url(); ?>editProfile-->
@@ -14,8 +13,7 @@
 
 <section id="editProfile">
 		
-		
-	<!--the [0] is making it always go to the 1st person in the array- john doe-->		
+	
 	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
 	<p>Upload New Photo <span>(295px X 295px)</span> - <a href="">Choose File</a></p>
@@ -23,7 +21,7 @@
 	<!-- add upload photo here-->
 	
 		
-	<?php echo form_open( base_url()."editProfile/".$proInfo[0]['user_id'] ); ?>
+	<?php echo form_open( base_url()."editProfile/".$this->session->userdata('userId') ); ?>
 	<legend>Add/Delete Your Likes & Dislikes</legend>
 		<p>
 			<?php
@@ -191,12 +189,16 @@
 			<th>Price</th>
 			<th>URL <span>(optional)</span></th>
 		</tr>
-		<tr>
-			<td>Mountain Bike</td>
-			<td>$369.99</td>
-			<td><a href="">Link to specific Item</a></td>
-		</tr>
-		
-	
+		<!--
+		<?php foreach ($proInfo as $gift): 
+			$link= $gift['gift_url']; 
+		?> 	
+			<tr>
+				<td><?php echo $gift['gift_name']; ?></td>
+				<td>$<?php echo $gift['gift_price']; ?></td>
+				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
+			</tr>
+		<?php endforeach; ?>
+	-->
 	</table>
 </section>

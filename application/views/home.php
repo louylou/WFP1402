@@ -1,4 +1,3 @@
-
 <!-- The CTA photo, Why Join? and Create an Account Section on the Home page-->
 		
 <section id="cta">
@@ -33,9 +32,9 @@
 	<?php echo form_open(base_url()); ?>
 	<legend>Create An Account</legend>
 	
-		<p><!--was 'firstName'-->
+		<p>
 			<?php
-			$s = $this->session->userdata('loggedIn'); 
+			$s = $this->session->userdata('userId'); 
 			$helloUser = $this->session->userdata('username');//displays correct user name
 			if (!$s){
 				$data = array(
@@ -48,23 +47,10 @@
 				echo form_error('fullname');
 				echo form_input($data, set_value('fullname')); 
 			} else {
-				echo "<h4>Welcome, ".ucwords($helloUser)."!</h4>";
+				echo "<h4>You must log out first before creating a new account.</h4>";
 			}?>
 		</p>
-		<!--<p>
-			<?php
-			$data = array(
-				'name' => 'lastName',
-				'id' => 'lastName',
-				'placeholder' => 'Last Name',
-				//'value' => set_value('email'),
-				'size' => '75'
-			
-			);
-			echo form_label('Last Name:', 'lastName');
-			echo form_error('lastName');
-			echo form_input($data, set_value('lastName')); ?>
-		</p>-->
+		
 		<p>
 			<?php
 			if (!$s){
@@ -72,7 +58,6 @@
 					'name' => 'newEmail',
 					'id' => 'newEmail',
 					'placeholder' => 'Email',
-					//'value' => set_value('email'),
 					'size' => '75'
 		
 				);
@@ -89,7 +74,6 @@
 					'name' => 'newPassword',
 					'id' => 'newPassword',
 					'placeholder' => 'Password',
-					//'value' => set_value('password'),
 					'size' => '75'
 				);
 				echo form_label('Password:', 'newPassword');
@@ -104,7 +88,6 @@
 					'name' => 'c_pwd',
 					'id' => 'c_pwd',
 					'placeholder' => 'Confirm Password',
-					//'value' => set_value('password'),
 					'size' => '75'
 				);
 				echo form_label('Confirm:', 'c_pwd');
@@ -124,35 +107,5 @@
 	
 	<?php echo form_close(); ?>
 	<!--<?php echo form_fieldset_close(); ?>-->
-
-
-
-
-<!--
-	<form>
-		<fieldset>
-			<legend>Create An Account</legend>				
-			<p>
-				<label for="firstName">First Name:</label>
-				<input type="text" name="firstName" id="firstName" placeholder="" min="1" max="100" size="75">
-			</p>
-			<p>
-				<label for="lastName">Last Name:</label>
-				<input type="text" name="lastName" id="lastName" placeholder="" min="1" max="100" size="75">
-			</p>
-			<p>
-				<label for="accountEmail">Email: </label>
-				<input type="text" name="accountEmail" id="accountEmail" placeholder="" min="1" max="100" size="75">
-			</p>
-			<p>
-				<label for="accountPassword">Password: </label>
-				<input type="password" name="accountPassword" id="accountPassword" placeholder="" min="1" max="100" size="75">
-			</p>	
-			<p>	
-				<input type="submit" name="submit" />
-			</p>
-		</fieldset>
-	</form>
--->
 
 </section>		

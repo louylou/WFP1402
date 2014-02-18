@@ -30,6 +30,12 @@
 	</head>
 
 	<body>
+		
+		<?php 
+		echo "Logged in: ".$this->session->userdata('userId'); 
+		?>
+	
+	
 		<header>
 		<nav>
 		
@@ -43,7 +49,7 @@
 				
 				<p>
 					<?php
-					$s = $this->session->userdata('loggedIn'); 
+					$s = $this->session->userdata('userId'); 
 					//$e = $this->session->userdata('email'); 
 					$helloUser = $this->session->userdata('username');//displays correct user name
 					if (!$s){ //if user session isnt logged in, show the login form
@@ -52,7 +58,7 @@
 							'id' => 'email',
 							'placeholder' => 'Email',
 							'value' => set_value('email'),
-							'size' => '50'
+							'size' => '40'
 						
 						);
 						echo form_label('Email:', 'email');
@@ -72,7 +78,7 @@
 							'id' => 'password',
 							'placeholder' => 'Password',
 							'value' => set_value('password'),
-							'size' => '50'
+							'size' => '40'
 						);
 						echo form_label('Password:', 'password');
 						echo form_error('password');

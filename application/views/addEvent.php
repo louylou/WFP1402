@@ -2,7 +2,7 @@
 	<ul>
 		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
 		<li><a href="<?php echo base_url(); ?>allEvents"> All Events >></a></li>
-		<li><a href="<?php echo base_url(); ?>addEvents"> Add Event </a></li>
+		<li><a href="<?php echo base_url()."addEvents/".$this->session->userdata('userId')?>"> Add Event </a></li>
 	</ul>
 </section>
 
@@ -10,8 +10,9 @@
 
 	<h1>Add an Event</h1>
 	
-	<?php echo form_open(base_url()."addEvents"); ?> <!--has an 's'-->
-	<legend>Hi <?php echo $proInfo[0]['user_fullname']; ?>, create an event to remind and celebrate with the group.</legend>
+	<?php echo form_open(base_url()."addEvents/".$this->session->userdata('userId')); ?> 
+	
+	<legend>Hi <?php echo $this->session->userdata('username'); ?>, create an event to remind and celebrate with the group.</legend>
 	
 		<p>
 			<?php
