@@ -184,7 +184,6 @@ class MainController extends CI_Controller {
 		var_dump($this->uri->segment(2));
 		var_dump($this->session->userdata('userId'));
 		var_dump($data['proInfo']);
-		//print_r('is this working'.$this->session->userdata());
 		print_r($this->session->all_userdata());
 		*/
 		
@@ -282,34 +281,35 @@ class MainController extends CI_Controller {
 			$this->load->view('footer');	
 
 		} else {
-	
-			//show 404 page
+			
+			//showing 404 page
+			$data['title'] = "404 Error";
+			
+			$this->load->view('header', $data);
+			$this->load->view('404', $data);
+			$this->load->view('footer'); 
+			
 		}
 	}
 	
-	// code for uploading user photo	
-	function picture() {
- 
-	/* Loads the Tank Auth "users" model, and assigns it the alias "foo" */
-	$this->load->model('tank_auth/users','foo');
- 
-	/* Gets the logged-in user's ID, from preloaded Tank Auth library */
-	$user_id = $this->tank_auth->get_user_id();
- 
-	/* Queries profile information for the user who's logged in ...
-	... including the profile pictures (see the table structure below) */
-	$data = $this->foo->get_profile_by_id($user_id);
- 
-	/* Passes that data to the header, menu, form, and footer views */
-	$this->load->view('header', $data);
-	$this->load->view('templates/menu', $data);
-	/* Loads the upload_form view */
-	$this->load->view('upload_form', array('error' => ' ' ));
-	$this->load->view('footer');
- 
+	//upload profile photo here
+	
+	public function profileImg() {
+	
+		if ($this->input->post('upload') === 'Upload'){
+	
+			$this->MainModel->do_upload();
+		}
+		
+		$data['images'] = $this->MainModel->get_images();
+		
+		$this->load->view('header', $data); 
+		$this->load->view('editProfile', $data); 
+		$this->load->view('footer');	
+		
+	
 	}
-
-
+	
 	
 	
 	public function allEvents(){

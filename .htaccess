@@ -14,3 +14,12 @@ RewriteRule ^(.*)$ - [PT,L]
 
 # Rewrite to index.php/URL
 RewriteRule ^(.*)$ index.php/$1 [PT,L]
+
+
+
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /MainController/index.php/$1 [L]

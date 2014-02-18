@@ -40,7 +40,13 @@
 		<nav>
 		
 			<ul>
-				<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li><!--logo link-->
+			
+			<?php $s = $this->session->userdata('userId');
+				if ($s) { ?>
+				<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li>
+				<?php } else { ?>
+				<li><a href="<?php echo base_url(); ?>">Perfect for Me</a></li>
+				<?php } ?>
 				<li><a href="<?php echo base_url(); ?>about">About</a></li>
 				<li><a href="<?php echo base_url(); ?>contact">Contact</a></li>
 			</ul>

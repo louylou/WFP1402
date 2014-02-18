@@ -16,10 +16,28 @@
 	
 	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
-	<p>Upload New Photo <span>(295px X 295px)</span> - <a href="">Choose File</a></p>
-
-	<!-- add upload photo here-->
 	
+	<?php if (isset($images) && count($images)): ?>
+		
+		<a href="<?php echo $images['url']; ?>"><img src="<?php echo $images['url']; ?>"/></a>
+		
+	<?php else: ?>
+	
+		<p>Please Upload an Profile Image</p>
+	
+	<?php endif; ?>
+	
+		
+	<p id="upload">	
+		<?php 
+			echo form_multipart(base_url()."editProfile".$this->session->userdata('userId')); 
+			echo form_upload('userfile');
+			echo form_submit('upload', 'Upload');
+			echo form_close(); 
+		?>
+	</p>
+
+
 		
 	<?php echo form_open( base_url()."editProfile/".$this->session->userdata('userId') ); ?>
 	<legend>Add/Delete Your Likes & Dislikes</legend>
