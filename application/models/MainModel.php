@@ -88,24 +88,86 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 	}
 	
-	public function groupInfo() {
-		
-	
-	}
-	
-	//want to create new group
-	//create new email
-	//create new groupname btn 	
-	//-(adds new 'group_name' to 'allGroups') - check if group_name hasnt been taken before
-	//-(adds session->userdata('email') 'groupnames_emails' to 'groupname' & join( allGroups.group_id = groupnames.groupname_id )
-	
 	//when logging in. 
 	//user_email matches 'groupname_emails' in 'groupnames' then returns which 'groupname_id' to be in
 	// -(might have to do the 'join( allGroups.group_id = groupnames.groupname_id )' again)
 	
+	public function createGroup($newGroup, $sessEmail) {
+		
+	//want to create new group
+	//user creates new groupname 
+	//user's email get stored with 'groupnames' table with the corresponding group_id = groupname_id 	
+	//-(adds new 'group_name' to 'allGroups') - check if group_name hasnt been taken before
+	//-(adds session->userdata('email') 'groupnames_emails' to 'groupname' & join( allGroups.group_id = groupnames.groupname_id )
+		
+		
+		//1.) add typed in group name to 'group_name' in 'allGroups
+		$this->db->insert('allGroups', $newGroup); 
+
+		//2.) getting table data to use for adding session Email to the table 'groupnames' in the field of 'groupname_emails' 
+		$this->db->select('group_id, group_name, groupname_id, groupname_emails');
+		$this->db->from('allGroups');
+		$this->db->where('group_name', $newGroup['group_name']);
+		$this->db->join('groupnames', 'groupnames.groupname_id = allGroups.group_id');		
+		
+		$result = $this->db->get();
+		 
+		//adding session email to 'groupname_emails' in the 'groupnames' table
+		if ($sessEmail != ''){
+		
+			$this->db->where('groupname_emails', $this->session->userdata('email') );	
+			$this->db->insert('allGroups', $newGroup); 				
+			return $this->db->last_query();			
+		}
+
+		$groups = $result->row_array(); 
+		
+		$this->session->set_userdata('groupId', $groups['group_id']);
+		//$this->session->set_userdata('email', $groups['']); 
+		//$this->session->set_userdata('username', $groups['']);
+		
+	}
+	
+	public function joinGroup($joinGroup, $sessEmail) {
 	//when joining a group
 	//types in 'group_name' if matches a 'group_name' in 'allGroups' table
 	//adds session->userdata('email') to 'groupnames_emails' in 'groupname' & join( allGroups.group_id = groupnames.groupname_id )
+		
+		//1.) does the groupname exist in db?
+		$this->db->select('group_id, group_name, groupname_id, groupname_emails');
+		$this->db->from('allGroups');
+		$this->db->where('group_name', $groupname);
+		$this->db->join('groupnames', 'groupnames.groupname_id = allGroups.group_id');
+		$result = $this->db->get();
+		
+		if ($result->num_rows() > 0) {
+
+			$groupExist = $result->row_array(); 
+				
+			// 5). Does the session email match the one stored in groupname_email?
+			if ($sessEmail == $groupname['groupname_emails']) {
+			
+				// 6). Answer to 5)... Yes
+				$this->session->set_userdata('email', $email); 
+				$this->session->set_userdata('userId', $groupExist['user_id']);  
+				return $groupExist;
+			
+			
+			// 7). Answer to 5)... No
+			} else {			
+
+				// error		
+			}
+		
+		// 8). Answer to 1)... No	
+		} else {
+
+			// error This groupname does not exist, please check spelling. 		
+		}	
+		
+	}
+	
+	
 	
 	
 	
@@ -153,7 +215,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 		// remove gift_name, gift_price, gift_url and make the gift table ID = user ID
 		
-		$this->db->select('user_fullname, user_id, gift_name, gift_price, gift_url, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
+		$this->db->select('user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
 		$this->db->order_by('user_fullname', 'asc');
 		$this->db->from('users'); 
 		
@@ -259,6 +321,25 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			
 		} else return false;
 	}
+	
+	public function displayGifts() {
+		
+		//gift_name, gift_price, gift_url,
+		$this->db->select('user_fullname, gift_id, user_id, gift_user_id, gift_name, gift_price, gift_url');
+		$this->db->order_by('gift_price', 'asc');
+		$this->db->from('gifts'); 
+		$this->db->join('users', 'users.user_id = gifts.gift_user_id');
+				
+		$result = $this->db->get();
+		
+		if ($result->num_rows() > 0) {
+		
+			return $result->result_array();
+			
+		} else return false;
+	
+	
+	}	
 } //end Class MainModel
 
 ?>

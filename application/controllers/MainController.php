@@ -153,6 +153,27 @@ class MainController extends CI_Controller {
 	
 	public function groups() {
 	
+		if ($this->input->post('createGroup') === 'Create Group') {
+		
+			$newGroup = array( 
+				'group_name' => $this->input->post('newGroup'), 
+			);
+		
+			$this->MainModel->createGroup($newGroup, $this->session->userdata('email'));//userId
+		
+		}
+		
+		if ($this->input->post('joinGroup') === 'join Group') {
+			
+			$joinGroup = array( 
+				'groupname_emails' => $this->input->post('joiningGroup'),
+			);
+			
+			$this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));
+		
+		}
+	
+	
 		$data['title'] = "Create/Join a Group: Perfect For Me";
 		$this->load->view('header', $data); 
 		$this->load->view('groups', $data); 
@@ -166,7 +187,9 @@ class MainController extends CI_Controller {
 		//$userId = $this->uri->segment(2);  
 		$data['proInfo'] = $this->MainModel->profileInfo($id); //$userId
 		
-		//var_dump($data['proInfo']);
+		$data['gifts'] = $this->MainModel->displayGifts();
+		
+		var_dump($data['gifts']);
 		
 		/*
 		session_start();

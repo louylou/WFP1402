@@ -78,7 +78,7 @@
 				<th>URL <span>(optional)</span></th>
 			</tr>
 			
-		<?php foreach ($proInfo as $gift): 
+		<?php foreach ($gifts as $gift): 
 			$link= $gift['gift_url']; 
 		?> 	
 			<tr>
