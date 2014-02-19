@@ -76,6 +76,16 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		//query to save data into the db table 		
 		$this->db->insert('users',$user_info);
 		
+		$this->db->select('user_email, user_id, user_fullname');
+		$this->db->from('users');
+		$this->db->where('user_email', $user_info['user_email']);
+		$result = $this->db->get();
+		$user = $result->row_array(); 
+		
+		$this->session->set_userdata('email', $user['user_email']); 
+		$this->session->set_userdata('userId', $user['user_id']); 
+		$this->session->set_userdata('username', $user['user_fullname']); 
+		
 	}
 	
 	public function groupInfo() {
@@ -117,21 +127,15 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	public function addEvnts($addEvnt, $userId = '') {
-	
-		//$this->db->select('user_fullname, user_id');
-		//$this->db->from('users');
 		
-		$this->db->select('user_fullname, user_id, event_title, event_date, event_user_id, event_starttime, event_endtime, event_location');
-		$this->db->from('users'); 
-		$this->db->join('events', 'events.event_user_id = users.user_id');
-		
-		
+		$this->db->select('event_title, event_date, event_user_id, event_starttime, event_endtime, event_location');
+		$this->db->from('events'); 
+			
 		if ($userId != ''){
 		
-			//doesnt know what 'user_id' is
-			$this->db->where('user_id', $userId);//assigning 'user_id' to $userId
+			$this->db->where('event_user_id', $this->session->userdata('userId') ); //$this->session->userdata('userId') = $userId
 			
-			$this->db->update('events', $addEvnt); 				
+			$this->db->insert('events', $addEvnt); 				
 			return $this->db->last_query();			
 		} 
 		
@@ -168,17 +172,16 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function editPro($likes, $userId = '') { //$userId = $id in controller
 		
-		// make the gift table ID = user ID
+		
+		//, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes
 		
 		$this->db->select('user_fullname, user_id'); //info to display user fullname
 		$this->db->from('users');//info to display user fullname
 				
 		if ($userId != ''){
-			$this->db->where('user_id', $userId);
-			
-			//$userId = $this->session->userdata('userId');
+			$this->db->where('user_id', $this->session->userdata('userId'));
 					
-			$this->db->update('users', $likes); //puts input field data into DB 				
+			$this->db->insert('users', $likes); //puts input field data into DB 				
 			return $this->db->last_query();			
 		}
 								
@@ -191,8 +194,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		} else return false;	
 	
 	}
-	
-	
+		
 	public function do_upload() {
 	
 		$config = array (
@@ -238,15 +240,14 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 
 	public function addGifts($gifts, $userId = '') {
 		
-		$this->db->select('user_fullname, user_id, gift_id, gift_user_id, gift_name, gift_price, gift_url'); 
+		$this->db->select('gift_id, gift_user_id, gift_name, gift_price, gift_url'); 
 		$this->db->order_by('gift_price', 'asc');
 		$this->db->from('gifts');
-		$this->db->join('users', 'users.user_id = gifts.gift_user_id');
 		
 		if ($userId != ''){
-			$this->db->where('user_id', $userId);
+			$this->db->where('gift_user_id',  $this->session->userdata('userId'));
 						
-			$this->db->update('gifts', $gifts); //puts input field data into DB 				
+			$this->db->insert('gifts', $gifts); //puts input field data into DB 				
 			return $this->db->last_query();		
 		}
 				
@@ -257,37 +258,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			return $result->result_array();
 			
 		} else return false;
-		
-		/*
-		$this->db->select('user_fullname, user_id, gift_id, gift_name, gift_price, gift_url'); 
-		$this->db->from('gifts');
-		$this->db->join('users', 'users.user_id = gifts.gift_id');
-	
-	
-		if ($userId != ''){
-			$this->db->where('user_id', $userId);
-			
-			//$this->db->update('users',$gifts); //puts input field data into DB 				
-			//return $this->db->last_query();		
-		}
-		
-		//doesnt know what 'user_id' is.... probably should call the 'users' table instead of 'gifts'
-		//$this->db->update('gifts', $gifts); //puts input field data into DB 				
-		//return $this->db->last_query();
-		
-		
-		$result = $this->db->get();
-		
-		if ($result->num_rows() > 0) {
-		
-			return $result->result_array();
-			
-		} else return false;
-		*/
 	}
-	
-
-	
 } //end Class MainModel
 
 ?>

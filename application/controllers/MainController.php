@@ -137,6 +137,7 @@ class MainController extends CI_Controller {
 		$this->load->view('footer');
 	
 	}
+	
 	public function groupHome(){
 		
 		
@@ -181,7 +182,7 @@ class MainController extends CI_Controller {
 		
 	}//end userProfile
 	
-	public function editProfile($id){
+	public function editProfile($id){ //$id is the id# in the URL 
 
 		// Is the User that we're editting currently logged in?
 		//what user? vs. session user
@@ -245,10 +246,9 @@ class MainController extends CI_Controller {
 					'gift_name' => $this->input->post('item'), 
 					'gift_price' => $this->input->post('price'),
 					'gift_url' => $this->input->post('url'),
+					'gift_user_id' => $this->session->userdata('userId')
 				);
-
-				$this->MainModel->addGifts($gifts, $this->session->userdata('userId'));
-			
+				$this->MainModel->addGifts($gifts, $this->session->userdata('userId'));			
 			}
 			
 			//adding a gift item
@@ -332,8 +332,6 @@ class MainController extends CI_Controller {
 	}
 	
 	public function addEvents($id){
-	
-		//if ($this->session->userdata('userId') == $id) {
 		
 			if ($this->input->post('addEvent') === 'addEvent'){
 	
@@ -387,7 +385,8 @@ class MainController extends CI_Controller {
 					'event_date' => $this->input->post('date'),
 					'event_location' => $this->input->post('location'),
 					'event_starttime' => $this->input->post('startTime'),
-					'event_endtime' => $this->input->post('endTime'),
+					'event_endtime' => $this->input->post('endTime'),	
+					'event_user_id' => $this->session->userdata('userId')				
 				);				
 			
 				$this->MainModel->addEvnts($addEvnt, $this->session->userdata('userId')); 
@@ -405,7 +404,6 @@ class MainController extends CI_Controller {
 			$this->load->view('header', $data); 
 			$this->load->view('addEvent', $data); 
 			$this->load->view('footer');
-	//	}
 	}
 	
 	public function about(){

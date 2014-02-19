@@ -444,6 +444,11 @@ p { padding-bottom: 20px; }
 	background: #fdfaff;
 }
 
+#about a {
+	color: #568d81;
+	font-size: 1.2em;
+}
+
  #about, #terms, #contact {
  	margin-top: 50px;
  }
@@ -719,6 +724,14 @@ p { padding-bottom: 20px; }
 #editProfile form p:last-of-type {
 	padding-top: 30px;
 }
+
+
+#upload {
+	width: 20%;
+
+}
+
+
 
 /* -- GIFT LIST -- */
 

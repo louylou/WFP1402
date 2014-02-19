@@ -1,7 +1,6 @@
 <section id="breadcrumbs">
 
-	<!--the [0] is making it always go to the 1st person in the array- john doe-->	
-	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
+	<?php $link = base_url()."editProfile/".$this->session->userdata('userId'); ?>
 	
 	<ul>
 		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
@@ -14,7 +13,7 @@
 <section id="editProfile">
 		
 	
-	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
+	<h1><?php echo $this->session->userdata('username'); ?></h1>
 	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
 	
 	<?php if (isset($images) && count($images)): ?>
@@ -24,13 +23,14 @@
 	<?php else: ?>
 	
 		<p>Please Upload an Profile Image</p>
+		
 	
 	<?php endif; ?>
 	
 		
 	<p id="upload">	
 		<?php 
-			echo form_multipart(base_url()."editProfile".$this->session->userdata('userId')); 
+			echo form_open_multipart(base_url()."editProfile/".$this->session->userdata('userId')); 
 			echo form_upload('userfile');
 			echo form_submit('upload', 'Upload');
 			echo form_close(); 
@@ -136,7 +136,7 @@
 </section><!-- end profileLikes -->		
 
 <section id="addGift">
-<?php echo form_open( base_url()."editProfile/".$proInfo[0]['user_id'] ); ?>
+<?php echo form_open( base_url()."editProfile/".$this->session->userdata('userId') ); ?>
 	<legend>Add Gift Items To Your Gift List</legend>
 		<p>
 			<?php

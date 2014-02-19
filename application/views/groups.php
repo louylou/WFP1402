@@ -33,7 +33,7 @@
 			echo form_submit($data, 'Create Group'); ?>
 		</p>
 		
-		<legend>Join a Group. <span>(make sure everything is spelled correctly).</span></legend>
+		<legend>Join a Group. <span>(make sure group name is spelled correctly).</span></legend>
 		
 		<p> <!-- Joining a group input-->
 			<?php
