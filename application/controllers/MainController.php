@@ -66,7 +66,6 @@ class MainController extends CI_Controller {
 			);
 		}
 	
-		
 		//logout
 		else if ($this->input->post('logout') === 'Logout'){		
 			
@@ -80,8 +79,7 @@ class MainController extends CI_Controller {
 		}
 
 		$data['error'] = "";
-		//$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
-		
+		//$this->form_validation->set_error_delimiters('<label class="error">', '</label>');		
 		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');	
 		$this->form_validation->set_message('required', 'Required!');		
 		$this->form_validation->set_rules($config);
@@ -112,11 +110,9 @@ class MainController extends CI_Controller {
 					'user_salt' => $salt
 				);
 				
-				$this->MainModel->addUser($user_info);	
-							
+				$this->MainModel->addUser($user_info);								
 				redirect( base_url().'groupHome', 'refresh');
-				exit();	
-		
+				exit();			
 			}														
 		} //end form_validation
 		
@@ -134,16 +130,16 @@ class MainController extends CI_Controller {
 	}
 	
 	public function groupHome(){
-		
-		
+			
 		$userId = $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
 		$data['users'] = $this->MainModel->profileInfo($userId); //homeProfiles()
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
-		
+	
 		$this->load->view('header', $data); 
 		$this->load->view('groupHome', $data); 
-		$this->load->view('footer');	
+		$this->load->view('footer');
+		
 	}
 	
 	public function groups() {
@@ -348,8 +344,8 @@ class MainController extends CI_Controller {
 	}
 	
 	public function addEvents($id){
-		
-			if ($this->input->post('addEvent') === 'addEvent'){
+	
+		if ($this->input->post('addEvent') === 'addEvent'){
 	
 				$config = array (
 					array ( 
@@ -360,7 +356,7 @@ class MainController extends CI_Controller {
 					array (
 						'field' => 'eventType',
 						'label' => 'Event Type',
-						'rules' => 'required|xss_clean',
+						'rules' => 'required|xss_clean|is_natural_no_zero',
 					),
 					array (
 						'field' => 'location',
@@ -392,8 +388,23 @@ class MainController extends CI_Controller {
 						'label' => '',
 						'rules' => 'required|xss_clean',
 					),
-				);		
+				);
 			}
+			//added 
+			//else {
+			//$config = array();			
+			//}
+
+			
+		//added 403-408	
+		/*$data['error'] = "";
+		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
+		$this->form_validation->set_message('required', 'Required!');		
+		$this->form_validation->set_rules($config);
+	
+		if ($this->form_validation->run() !== FALSE) {
+		*/	
+			
 			if ($this->input->post('addEvent') === 'Add Event') {
 	
 				$addEvnt = array( 
@@ -414,7 +425,17 @@ class MainController extends CI_Controller {
 				// Set Error Message
 				$data['error'] = "Please Enter Correct Event Info.";		
 			}
-
+			
+		//added	
+		//}//end form_validation
+		/*else {		
+			// Set Error Message
+			$data['error'] = "Please Enter Correct User Info.";		
+		}*/ 
+		
+		
+		
+		
 			//$userId =  $this->uri->segment(2); 
 			$data['proInfo'] = $this->MainModel->addEvnts($id);
 	

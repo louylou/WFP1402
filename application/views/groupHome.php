@@ -24,7 +24,7 @@
 			?> 
 		
 			<li>
-				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/noPhoto.jpg'/></a>
+				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg'/></a>
 				<a href="<?php echo $link; ?>"><?php echo $user['user_fullname']; ?></a>
 			</li> 		
 		<?php endforeach; ?>

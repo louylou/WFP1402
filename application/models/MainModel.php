@@ -273,7 +273,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$image_data = $this->upload->data();
 		
 		
-		/*$config = array (
+		$config = array (
 			'source_image' => $image_data['full_path'],
 			'new_image' => $this->gallery_path . '/thumbs',
 			'maintain_ration' => true,
@@ -283,7 +283,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 		$this->load->library('image_lib', $config);
 		$this->image_lib->resize();
-		*/
+		
 	}
 	
 	public function get_images() {
