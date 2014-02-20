@@ -30,7 +30,7 @@
 		<p>
 			<?php			
 			$options = array(
-				'' => 'Please Choose An Event Type',
+				'' => 'Please Choose An Event Type', 
 				'birthday' => 'Birthday',
 				'graduation' => 'Graduation',
 				'special' => 'Special Party',
@@ -39,7 +39,7 @@
 			echo form_label('Event Type:', 'eventType');
 			echo form_error('eventType');
 			
-			echo form_dropdown('eventType', $options); //if no error add ,'special' after $options
+			echo form_dropdown('eventType', $options ); //$proInfo //if no error add ,'special' after $options
 			 
 			?>
 		</p>

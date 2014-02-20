@@ -13,7 +13,7 @@
 	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
 	
 	
-	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
+	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg"/></a></p>
 
 	
 	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
@@ -68,8 +68,12 @@
 		</select>
 	</form>
 	<ul>
-		<!--<li>1 - <?php echo $this->db->count_all('gifts') ?></li>-->
-		<li>1 - 13 ( 24 )</li>
+	
+	<?php $id = $this->db->where('gift_user_id', $proInfo[0]['user_id']);
+		$id = $this->db->from('gifts');
+		$count = $id->count_all_results();
+	?>
+		<li>1 - <?php echo $count; ?></li>
 		<li><a href="">View All </a></li>
 	</ul>
 		<table>
@@ -87,9 +91,22 @@
 			<tr>
 				<td><?php echo $gift['gift_name']; ?></td>
 				<td>$<?php echo $gift['gift_price']; ?></td>
-				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
+				<?php if ($link != '') { ?>
+					<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
+				<?php } else { ?>
+					<td></td>
+				<?php } ?>
+			
 			</tr>
-		<?php endforeach; }?>
+		<?php endforeach; }
+		
+		else { ?>	
+			<tr>
+				<td>No gifts listed yet</td>
+				<td>$</td>
+				<td></td>
+			</tr>		
+		<?php }?>
 		
 		</table>
 </section>

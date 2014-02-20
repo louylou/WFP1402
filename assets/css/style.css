@@ -171,7 +171,7 @@ h4 {
 
 h5 {}
 
-p { padding-bottom: 20px; }
+p { /*padding-bottom: 20px;*/ }
 
 
 
@@ -611,6 +611,7 @@ p { padding-bottom: 20px; }
 	padding: 20px;
 	letter-spacing: .046em;
 	float: left;
+	width: 30%;
 }
 #profile > p:nth-of-type(2),
 #editProfile > p:nth-of-type(2) {
@@ -634,9 +635,15 @@ p { padding-bottom: 20px; }
 }
 #profile form,
 #editProfile form{
-	padding: 20px 20px 30px 0px;
+	padding: 20px 20px 20px 0px;
 	/*width: 60%;*/
 	float: right;
+}
+
+#upload {
+	width: 35%;
+	padding: 20px 20px 0px 20px;
+	float: left;
 }
 #addGift form {
 	padding: 20px;
@@ -707,7 +714,10 @@ p { padding-bottom: 20px; }
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	border: 1px solid #bfafca;	
+
+	border: 1px solid #bfafca;
+	box-shadow: none;	
+
 }
 
 
@@ -726,13 +736,6 @@ p { padding-bottom: 20px; }
 }
 
 
-#upload {
-	width: 20%;
-
-}
-
-
-
 /* -- GIFT LIST -- */
 
 #giftList {
@@ -748,7 +751,7 @@ p { padding-bottom: 20px; }
 }
 
 #giftList form {
-	position: absolute; right: 160px; top: -2px;
+	position: absolute; right: 110px; top: -2px;
  	padding: 20px 10px 10px 10px;
 }
 
@@ -805,6 +808,7 @@ p { padding-bottom: 20px; }
 /* -- ADD GIFTS-- */
 
 #addGift {
+	margin-bottom: 50px;
 	margin-top: 30px;
 	background: #fdfaff;
 	border: solid 1px #ccc;

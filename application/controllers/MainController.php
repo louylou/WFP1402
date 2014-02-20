@@ -37,16 +37,11 @@ class MainController extends CI_Controller {
 		else if ($this->input->post('submit') === 'Submit') {	
 		
 			$config = array (
-				array ( //was firstName
+				array ( 
 					'field' => 'fullname',
 					'label' => 'Full Name',
 					'rules' => 'required',
 				),
-				/*array (
-					'field' => 'lastName',
-					'label' => 'Last Name',
-					'rules' => 'required',
-				),*/
 				/*array (
 					'field' => 'groupName',
 					'label' => 'Group',
@@ -189,11 +184,9 @@ class MainController extends CI_Controller {
 		
 		$data['gifts'] = $this->MainModel->displayGifts($id);
 		
-		var_dump($data['gifts']);
-		
+		//var_dump($data['gifts']);	
 		//passing in the username, id, & all likes
-		var_dump($data['proInfo']);
-		
+		//var_dump($data['proInfo']);		
 		/*
 		session_start();
 		var_dump($this->uri->segment(2));
@@ -307,11 +300,8 @@ class MainController extends CI_Controller {
 				
 			// Get User
 			//$data['user'] = ;				
-
+			
 			//$data['proInfo'] = $this->MainModel->editPro($id);
-	
-			//var_dump($userId);
-			//var_dump($data['proInfo']);
 		
 			$data['title'] = "Edit Profile: Perfect For Me";
 		

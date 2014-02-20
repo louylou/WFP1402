@@ -10,10 +10,11 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 		//parent::Model();
 		
-		$this->gallery_path = realpath(APPPATH . '../userImages'); 		
+		$this->load->database(); //loads in MYSQL Database
+		
+		$this->gallery_path = realpath(APPPATH.'../userImages'); 		
 		$this->gallery_path_url = base_url().'userImages/'; 
 		
-		$this->load->database(); //loads in MYSQL Database
 		
 	} //end __construct
 
@@ -198,6 +199,11 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			return $this->db->last_query();			
 		} 
 		
+		//if ('birthday') {
+		//$icon = 
+		//}
+		
+		
 		$result= $this->db->get(); 
 
 		if ($result->num_rows() > 0) { 
@@ -267,7 +273,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$image_data = $this->upload->data();
 		
 		
-		$config = array (
+		/*$config = array (
 			'source_image' => $image_data['full_path'],
 			'new_image' => $this->gallery_path . '/thumbs',
 			'maintain_ration' => true,
@@ -277,7 +283,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 		$this->load->library('image_lib', $config);
 		$this->image_lib->resize();
-		
+		*/
 	}
 	
 	public function get_images() {

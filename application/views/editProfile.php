@@ -14,28 +14,27 @@
 		
 	
 	<h1><?php echo $this->session->userdata('username'); ?></h1>
-	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/bri.jpg"/></a></p>
+	<div id="upload">
+		<a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg"/></a>
 	
-	<?php if (isset($images) && count($images)): ?>
+		<!--<?php if (isset($images) && count($images)): ?>
 		
-		<a href="<?php echo $images['url']; ?>"><img src="<?php echo $images['url']; ?>"/></a>
+			<a href="<?php echo $images['url']; ?>"><img src="<?php echo $images['url']; ?>"/></a>
 		
-	<?php else: ?>
+		<?php else: ?>
 	
-		<p>Please Upload an Profile Image</p>
-		
+			<p>Please Upload an Profile Image</p>
+			
+		<?php endif; ?>-->
 	
-	<?php endif; ?>
 	
-		
-	<p id="upload">	
 		<?php 
 			echo form_open_multipart(base_url()."editProfile/".$this->session->userdata('userId')); 
-			echo form_upload('userfile');
+			echo form_upload('userfile', 'Userfile');
 			echo form_submit('upload', 'Upload');
 			echo form_close(); 
 		?>
-	</p>
+	</div>
 
 
 		
@@ -121,8 +120,9 @@
 			//echo form_error('dislikes');
 			echo form_input($data, set_value('dislikes')); ?>
 		</p>
-	
+
 		<p>
+		Once 'SAVE' is clicked, your likes & dislikes will display on your profile page.
 			<?php
 			$data = array(
 				'name' => 'editSave',
@@ -182,41 +182,9 @@
 				'id' => 'addGift'
 			);
 			echo form_submit($data, 'Add Gift'); ?>
+			Once clicked, your likes & dislikes will display on your profile page.
 		</p>
 	
 	<?php echo form_close(); ?>
 
 </section><!-- end addGift -->
-
-<section id="giftList">	
-	<h1>All Gift Requests</h1>
-	<form>
-		<select>
-		   <option value="price">Price</option>
-		   <option value="name">Name</option>
-		</select>
-	</form>
-	<ul>
-		<li>1 - 13 ( 24 )</li>
-		<li><a href="">View All </a></li>
-	</ul>
-	
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Price</th>
-			<th>URL <span>(optional)</span></th>
-		</tr>
-		<!--
-		<?php foreach ($proInfo as $gift): 
-			$link= $gift['gift_url']; 
-		?> 	
-			<tr>
-				<td><?php echo $gift['gift_name']; ?></td>
-				<td>$<?php echo $gift['gift_price']; ?></td>
-				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
-			</tr>
-		<?php endforeach; ?>
-	-->
-	</table>
-</section>
