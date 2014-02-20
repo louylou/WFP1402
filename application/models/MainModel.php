@@ -168,9 +168,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	
-	
-	
-	
 	public function events() {	
 				
 		$this->db->select('event_title, event_date, event_user_id, event_starttime, event_endtime, event_location, user_fullname, user_id');
@@ -213,7 +210,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function profileInfo($userId = '') { //$userId is = $id in the controller
 		
-		// remove gift_name, gift_price, gift_url and make the gift table ID = user ID
+		// gift_name, gift_price, gift_url 
 		
 		$this->db->select('user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
 		$this->db->order_by('user_fullname', 'asc');
@@ -234,7 +231,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function editPro($likes, $userId = '') { //$userId = $id in controller
 		
-		
 		//, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes
 		
 		$this->db->select('user_fullname, user_id'); //info to display user fullname
@@ -243,9 +239,10 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		if ($userId != ''){
 			$this->db->where('user_id', $this->session->userdata('userId'));
 					
-			$this->db->insert('users', $likes); //puts input field data into DB 				
+			$this->db->update('users', $likes); //puts input field data into DB 				
 			return $this->db->last_query();			
 		}
+			
 								
 		$fullNameDisplay= $this->db->get(); 
 
@@ -254,7 +251,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			return $fullNameDisplay->result_array(); 
 			
 		} else return false;	
-	
+		
 	}
 		
 	public function do_upload() {
@@ -307,8 +304,8 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$this->db->from('gifts');
 		
 		if ($userId != ''){
-			$this->db->where('gift_user_id',  $this->session->userdata('userId'));
-						
+			$this->db->where('gift_user_id', $this->session->userdata('userId'));
+			
 			$this->db->insert('gifts', $gifts); //puts input field data into DB 				
 			return $this->db->last_query();		
 		}
@@ -322,13 +319,19 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		} else return false;
 	}
 	
-	public function displayGifts() {
+	public function displayGifts($userId = '') {
 		
-		//gift_name, gift_price, gift_url,
+		// select gift items from database where gift_user_id = user_id (on which page I'm on)
+		
 		$this->db->select('user_fullname, gift_id, user_id, gift_user_id, gift_name, gift_price, gift_url');
 		$this->db->order_by('gift_price', 'asc');
 		$this->db->from('gifts'); 
 		$this->db->join('users', 'users.user_id = gifts.gift_user_id');
+		
+		if ($userId != ''){
+		
+			$this->db->where('gift_user_id', $userId );
+		}
 				
 		$result = $this->db->get();
 		

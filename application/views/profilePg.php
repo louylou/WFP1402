@@ -68,6 +68,7 @@
 		</select>
 	</form>
 	<ul>
+		<!--<li>1 - <?php echo $this->db->count_all('gifts') ?></li>-->
 		<li>1 - 13 ( 24 )</li>
 		<li><a href="">View All </a></li>
 	</ul>
@@ -78,7 +79,9 @@
 				<th>URL <span>(optional)</span></th>
 			</tr>
 			
-		<?php foreach ($gifts as $gift): 
+		<?php 
+		if (is_array($gifts)) {
+		foreach ($gifts as $gift): 
 			$link= $gift['gift_url']; 
 		?> 	
 			<tr>
@@ -86,7 +89,7 @@
 				<td>$<?php echo $gift['gift_price']; ?></td>
 				<td><a href="<?php echo $link; ?>">Link to specific Item</a></td>
 			</tr>
-		<?php endforeach; ?>
+		<?php endforeach; }?>
 		
 		</table>
 </section>

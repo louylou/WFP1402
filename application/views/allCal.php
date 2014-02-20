@@ -10,8 +10,7 @@
 	<h1>ALL SPECIAL EVENTS</h1>
 		
 		<p>Events Listed: ALL</p>
-		<p><a href="<?php echo base_url(); ?>addEvents">Add Event</a></p>
-
+		<p><a href='<?php echo base_url()."addEvents/".$this->session->userdata("userId")?>'>Add Event</a></p>
 		<ul>	
 		<?php 
 		//print_r($events);
@@ -24,7 +23,7 @@
 			$starttime = date("g:i", strtotime( $event['event_starttime']));
 			$endtime =date("g:i", strtotime( $event['event_endtime']));	 
 		 ?>
-				<li class='birthday'>(<?php echo $day; ?>)<?php echo '&nbsp'; ?><span><?php echo $date; ?></span> - <?php echo $event['user_fullname']; ?>
+				<li class='party'>(<?php echo $day; ?>)<?php echo '&nbsp'; ?><span><?php echo $date; ?></span> - <?php echo $event['user_fullname']; ?>
 				<a href="<?php echo $link; ?>"><?php echo $event['event_title']; ?></a>
 				<?php echo $starttime; ?> - <?php echo $endtime; ?>
 				<?php echo '&nbsp'; ?>

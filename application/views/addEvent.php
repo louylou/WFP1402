@@ -38,7 +38,9 @@
 			);
 			echo form_label('Event Type:', 'eventType');
 			echo form_error('eventType');
-			echo form_dropdown('eventType', $options); //if no error add ,'special' after $options 
+			
+			echo form_dropdown('eventType', $options); //if no error add ,'special' after $options
+			 
 			?>
 		</p>
 		<p>

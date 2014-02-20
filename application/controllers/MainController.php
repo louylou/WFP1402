@@ -187,9 +187,12 @@ class MainController extends CI_Controller {
 		//$userId = $this->uri->segment(2);  
 		$data['proInfo'] = $this->MainModel->profileInfo($id); //$userId
 		
-		$data['gifts'] = $this->MainModel->displayGifts();
+		$data['gifts'] = $this->MainModel->displayGifts($id);
 		
 		var_dump($data['gifts']);
+		
+		//passing in the username, id, & all likes
+		var_dump($data['proInfo']);
 		
 		/*
 		session_start();
@@ -305,10 +308,10 @@ class MainController extends CI_Controller {
 			// Get User
 			//$data['user'] = ;				
 
-			$data['proInfo'] = $this->MainModel->editPro($id);
+			//$data['proInfo'] = $this->MainModel->editPro($id);
 	
 			//var_dump($userId);
-			var_dump($data['proInfo']);
+			//var_dump($data['proInfo']);
 		
 			$data['title'] = "Edit Profile: Perfect For Me";
 		
@@ -413,6 +416,9 @@ class MainController extends CI_Controller {
 				);				
 			
 				$this->MainModel->addEvnts($addEvnt, $this->session->userdata('userId')); 
+			
+				redirect( base_url().'allEvents', 'refresh');
+				exit();
 			
 			}else { //not needed		
 				// Set Error Message
