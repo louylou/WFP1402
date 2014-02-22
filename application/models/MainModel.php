@@ -90,85 +90,64 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	//when logging in. 
-	//user_email matches 'groupname_emails' in 'groupnames' then returns which 'groupname_id' to be in
+	//user_id matches 'groupname_user_id' in 'groupnames' then returns which 'groupname_id' to be in
 	// -(might have to do the 'join( allGroups.group_id = groupnames.groupname_id )' again)
+		
 	
-	public function createGroup($newGroup, $sessEmail) {
+	public function createGroup($userId = '', $groupName) { 
+		//echo 'UserId:'.$userId.'<br>';
+		//echo 'Group Name:'.$groupName.'<br>';
 		
-	//want to create new group
-	//user creates new groupname 
-	//user's email get stored with 'groupnames' table with the corresponding group_id = groupname_id 	
-	//-(adds new 'group_name' to 'allGroups') - check if group_name hasnt been taken before
-	//-(adds session->userdata('email') 'groupnames_emails' to 'groupname' & join( allGroups.group_id = groupnames.groupname_id )
+		//1.) inserting the new groupname that was created 
+		$data = array('group_name'=>$groupName);
+		$this->db->insert('allGroups', $data); 	
 		
-		
-		//1.) add typed in group name to 'group_name' in 'allGroups
-		$this->db->insert('allGroups', $newGroup); 
-
-		//2.) getting table data to use for adding session Email to the table 'groupnames' in the field of 'groupname_emails' 
-		$this->db->select('group_id, group_name, groupname_id, groupname_emails');
+		//2.) selecting the new group's id
+		$this->db->select('group_id'); 
 		$this->db->from('allGroups');
-		$this->db->where('group_name', $newGroup['group_name']);
-		$this->db->join('groupnames', 'groupnames.groupname_id = allGroups.group_id');		
+		$this->db->where('group_name', $groupName);
+		$this->db->order_by('group_id', 'desc');
 		
+		//3.) getting the result of the id & making it into an array instead of an object
 		$result = $this->db->get();
-		 
-		//adding session email to 'groupname_emails' in the 'groupnames' table
-		if ($sessEmail != ''){
+		$r = $result->result_array();
 		
-			$this->db->where('groupname_emails', $this->session->userdata('email') );	
-			$this->db->insert('allGroups', $newGroup); 				
-			return $this->db->last_query();			
-		}
-
-		$groups = $result->row_array(); 
+		//echo 'group_id:'.$r[0]['group_id'];
 		
-		$this->session->set_userdata('groupId', $groups['group_id']);
-		//$this->session->set_userdata('email', $groups['']); 
-		//$this->session->set_userdata('username', $groups['']);
+		//4.) inserting the new group id into the groupnames table, which has the session userId stored with it. 
+		$data = array('groupname_id'=>$r[0]['group_id'], 'groupname_user_id'=> $userId);
+		$this->db->insert('groupnames', $data); 	
+											
+		return true;
 		
 	}
 	
-	public function joinGroup($joinGroup, $sessEmail) {
-	//when joining a group
-	//types in 'group_name' if matches a 'group_name' in 'allGroups' table
-	//adds session->userdata('email') to 'groupnames_emails' in 'groupname' & join( allGroups.group_id = groupnames.groupname_id )
-		
+	public function joinGroup($joinGroup, $userId = '' ) {
+
 		//1.) does the groupname exist in db?
-		$this->db->select('group_id, group_name, groupname_id, groupname_emails');
+		$this->db->select('group_id, group_name');
 		$this->db->from('allGroups');
-		$this->db->where('group_name', $groupname);
-		$this->db->join('groupnames', 'groupnames.groupname_id = allGroups.group_id');
+		//where the stored group_name matches the typed in one (joinGroup)
+		$this->db->where('group_name', $joinGroup);
 		$result = $this->db->get();
-		
+			
+		//2.) answer to 1.)...... yes
 		if ($result->num_rows() > 0) {
+		
+			$groupExist = $result->row_array();
 
-			$groupExist = $result->row_array(); 
+			$data = array('groupname_id'=>$groupExist['group_id'], 'groupname_user_id'=> $userId);
+
+			$this->db->where('groupname_user_id', $this->session->userdata('userId'));
+			$this->db->insert('groupnames', $data); 
+			return $this->db->last_query();
 				
-			// 5). Does the session email match the one stored in groupname_email?
-			if ($sessEmail == $groupname['groupname_emails']) {
-			
-				// 6). Answer to 5)... Yes
-				$this->session->set_userdata('email', $email); 
-				$this->session->set_userdata('userId', $groupExist['user_id']);  
-				return $groupExist;
-			
-			
-			// 7). Answer to 5)... No
-			} else {			
-
-				// error		
-			}
-		
-		// 8). Answer to 1)... No	
-		} else {
-
-			// error This groupname does not exist, please check spelling. 		
-		}	
-		
+		 //3.) Answer to 1)... No	
+		} else {	
+			echo 'This groupname does not exist, please check spelling.'; 		
+		}			
 	}
-	
-	
+		
 	public function events() {	
 				
 		$this->db->select('event_title, event_date, event_user_id, event_starttime, event_endtime, event_location, user_fullname, user_id');

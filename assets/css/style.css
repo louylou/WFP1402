@@ -271,7 +271,7 @@ p { /*padding-bottom: 20px;*/ }
 	margin-bottom: 50px; /*pushed the footer down lower*/
 }
 #registration div {
-	padding-bottom: 0px;
+	padding-bottom: 40px;
 }
 
 #registration form {

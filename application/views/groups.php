@@ -10,7 +10,7 @@
 	<h1>Create or Join a Group</h1>
 
 		
-	<?php echo form_open( base_url()."editProfile/".$this->session->userdata('userId') ); ?>
+	<?php echo form_open( base_url()."groups/".$this->session->userdata('userId') ); ?>
 	<legend>Create a unique group name.</legend>
 		
 		<p><!-- Creating a group input-->
@@ -22,6 +22,7 @@
 				'size' => '50'			
 			);
 			echo form_label('New Group Name:', 'newGroup');
+			echo form_error('newGroup');
 			echo form_input($data, set_value('newGroup')); ?>
 		</p>
 		<p>
@@ -31,8 +32,11 @@
 				'id' => 'createGroup'
 			);
 			echo form_submit($data, 'Create Group'); ?>
-		</p>
-		
+		</p>		
+	<?php echo form_close(); ?>	
+	
+	
+	<?php echo form_open( base_url()."groups/".$this->session->userdata('userId') ); ?>	
 		<legend>Join a Group. <span>(make sure group name is spelled correctly).</span></legend>
 		
 		<p> <!-- Joining a group input-->
@@ -41,10 +45,11 @@
 			$data = array(
 				'name' => 'joiningGroup',
 				'id' => 'joiningGroup',
-				'placeholder' => 'Type the correct Group Name you wish to join.', //$placeholder,
+				'placeholder' => 'Type the correct Group Name you wish to join.', 
 				'size' => '50'			
 			);
 			echo form_label('Group Name:', 'joiningGroup');
+			echo form_error('joiningGroup');
 			echo form_input($data, set_value('joiningGroup')); ?>
 		</p>
 		<p>

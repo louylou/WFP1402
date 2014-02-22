@@ -142,29 +142,57 @@ class MainController extends CI_Controller {
 		
 	}
 	
-	public function groups() {
+	public function groups($id) {
 	
 		if ($this->input->post('createGroup') === 'Create Group') {
-		
-			$newGroup = array( 
-				'group_name' => $this->input->post('newGroup'), 
-			);
-		
-			$this->MainModel->createGroup($newGroup, $this->session->userdata('email'));//userId
-		
+			$config = array (
+				array ( 
+					'field' => 'newGroup',
+					'label' => 'New Group Name',
+					'rules' => 'strip_tags|trim|required|xss_clean|is_unique[allGroups.group_name]',
+				),
+			);						
 		}
-		
-		if ($this->input->post('joinGroup') === 'join Group') {
-			
-			$joinGroup = array( 
-				'groupname_emails' => $this->input->post('joiningGroup'),
-			);
-			
-			$this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));
-		
+		else if ($this->input->post('joinGroup') === 'Join Group') {
+			$config = array (
+				array ( 
+					'field' => 'joiningGroup',
+					'label' => 'Group Name',
+					'rules' => 'strip_tags|trim|required|xss_clean',
+				),
+			);						
 		}
-	
-	
+		else {
+			$config = array();			
+		}
+
+		$data['error'] = "";
+		$this->form_validation->set_error_delimiters('<legend class="error">', '</legend>');			
+		$this->form_validation->set_message('required', 'Required!');		
+		$this->form_validation->set_rules($config);
+
+		if ($this->form_validation->run() !== FALSE) {
+		
+			if ($this->input->post('createGroup') === 'Create Group') {
+		
+				$this->MainModel->createGroup($this->session->userdata('userId'), $this->input->post('newGroup') );			
+				redirect( base_url().'groupHome', 'refresh');
+				exit();	
+			}
+		
+			else if ($this->input->post('joinGroup') === 'Join Group') {
+
+				$joinGroup = $this->input->post('joiningGroup');
+				$this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));
+			
+				//var_dump($joinGroup);
+						
+				redirect( base_url().'groupHome', 'refresh');
+				exit();	
+		
+			}
+		}//end form validation
+		
 		$data['title'] = "Create/Join a Group: Perfect For Me";
 		$this->load->view('header', $data); 
 		$this->load->view('groups', $data); 
@@ -394,9 +422,8 @@ class MainController extends CI_Controller {
 			//else {
 			//$config = array();			
 			//}
-
-			
-		//added 403-408	
+					
+		//added 
 		/*$data['error'] = "";
 		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
 		$this->form_validation->set_message('required', 'Required!');		
