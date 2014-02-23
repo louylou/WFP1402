@@ -27,6 +27,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$this->db->where('user_email', $email);
 		$result = $this->db->get();
 		
+		
 		// 2). Answer to 1)... Yes
 		if ($result->num_rows() > 0) {
 		
@@ -44,6 +45,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 				$this->session->set_userdata('email', $email); 
 				$this->session->set_userdata('userId', $user['user_id']); 
 				$this->session->set_userdata('username', $user['user_fullname']); 
+				$this->session->set_userdata('username', $user['user_fullname']); 
 				return $email;
 			
 			
@@ -51,15 +53,13 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			} else {			
 				//return 'Passwords dont match ('.$salt.'): '.$password.' not equal '.$user['user_password'];
 				// error		
-			}
-		
-		// 8). Answer to 1)... No	
-		} else {
-		
+			}	
+			
+		} // 8). Answer to 1)... No
+		else {		
 			//return 'invalid user';
 			// error invalid user		
 		}	
-
 	} //end login
 	
 	//randomizes a string that can be used to mix with the user's md5 password thats hashed 
@@ -88,12 +88,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		$this->session->set_userdata('username', $user['user_fullname']); 
 		
 	}
-	
-	//when logging in. 
-	//user_id matches 'groupname_user_id' in 'groupnames' then returns which 'groupname_id' to be in
-	// -(might have to do the 'join( allGroups.group_id = groupnames.groupname_id )' again)
 		
-	
 	public function createGroup($userId = '', $groupName) { 
 		//echo 'UserId:'.$userId.'<br>';
 		//echo 'Group Name:'.$groupName.'<br>';
@@ -111,8 +106,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		//3.) getting the result of the id & making it into an array instead of an object
 		$result = $this->db->get();
 		$r = $result->result_array();
-		
-		//echo 'group_id:'.$r[0]['group_id'];
 		
 		//4.) inserting the new group id into the groupnames table, which has the session userId stored with it. 
 		$data = array('groupname_id'=>$r[0]['group_id'], 'groupname_user_id'=> $userId);
@@ -137,14 +130,19 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			$groupExist = $result->row_array();
 
 			$data = array('groupname_id'=>$groupExist['group_id'], 'groupname_user_id'=> $userId);
-
 			$this->db->where('groupname_user_id', $this->session->userdata('userId'));
 			$this->db->insert('groupnames', $data); 
+			
+			//var_dump($result);
+			//var_dump($groupExist);
+
+			$this->session->set_userdata('groupId', $groupExist['group_id']);
+			$this->session->set_userdata('groupName', $groupExist['group_name']);						
 			return $this->db->last_query();
 				
 		 //3.) Answer to 1)... No	
 		} else {	
-			echo 'This groupname does not exist, please check spelling.'; 		
+			echo 'This groupname does not exist, please check spelling.';		
 		}			
 	}
 		
@@ -194,15 +192,17 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	public function profileInfo($userId = '') { //$userId is = $id in the controller
-		
-		// gift_name, gift_price, gift_url 
-		
-		$this->db->select('user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
+	
+		$this->db->select('groupname_id, groupname_user_id, user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
 		$this->db->order_by('user_fullname', 'asc');
-		$this->db->from('users'); 
+		$this->db->from('groupnames');
+		$this->db->join('users', 'users.user_id = groupnames.groupname_user_id');
 		
-		if ($userId != ''){
+		if ($userId != ''){	
+			
 			$this->db->where('user_id', $userId);
+			$this->db->where('groupname_id', $this->session->userdata('groupId'));
+			
 		}
 		$fullNameDisplay= $this->db->get(); 
 

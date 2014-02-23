@@ -133,8 +133,10 @@ class MainController extends CI_Controller {
 			
 		$userId = $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
-		$data['users'] = $this->MainModel->profileInfo($userId); //homeProfiles()
+		$data['users'] = $this->MainModel->profileInfo($userId); 
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
+	
+		//var_dump($data['users']);
 	
 		$this->load->view('header', $data); 
 		$this->load->view('groupHome', $data); 
@@ -183,16 +185,13 @@ class MainController extends CI_Controller {
 			else if ($this->input->post('joinGroup') === 'Join Group') {
 
 				$joinGroup = $this->input->post('joiningGroup');
-				$this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));
-			
-				//var_dump($joinGroup);
-						
+				$groupExist = $this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));													
 				redirect( base_url().'groupHome', 'refresh');
 				exit();	
 		
 			}
 		}//end form validation
-		
+		 
 		$data['title'] = "Create/Join a Group: Perfect For Me";
 		$this->load->view('header', $data); 
 		$this->load->view('groups', $data); 
@@ -225,7 +224,7 @@ class MainController extends CI_Controller {
 		
 	}//end userProfile
 	
-	public function editProfile($id){ //$id is the id# in the URL 
+	public function editProfile($id){ //$id is the user id# in the URL 
 
 		// Is the User that we're editting currently logged in?
 		//what user? vs. session user

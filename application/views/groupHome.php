@@ -2,7 +2,8 @@
 
 <section id="groups">	
 	<ul>
-		<li><a href="<?php echo base_url()."groups/".$this->session->userdata('userId'); ?>">Create or Join a Group</a></li>				
+		<li><a href="<?php echo base_url()."groups/".$this->session->userdata('userId'); ?>">Create or Join a Group</a></li>
+		<li id="groupName">Group: <?php echo $this->session->userdata('groupName'); ?></li>				
 	</ul>
 </section>
 
@@ -12,21 +13,33 @@
 	<h1>ALL GIFT PROFILES</h1>
 
 	<ul>
-		<!--restrict to 10 profile names to show on this page -->
-		<li>1 - <?php echo $this->db->count_all('users'); ?> Profiles</li>
-		<!--<li><a href=''>View All </a></li>-->
+		<?php $id = $this->db->where('groupname_id', $this->session->userdata('groupId'));
+			$id = $this->db->from('groupnames');
+			$count = $id->count_all_results();
+		?>
+		<li>1 - <?php echo $count; ?> Profiles</li>
 	</ul>
 
-	<ul>		
-		<?php foreach ($users as $user): 
-			$link = base_url()."profile/".$user['user_id'];
-			?> 
-		
+	<ul>	
+			
+		<?php
+		if ($this->session->userdata('groupId') == $users[0]['groupname_id']) {
+			foreach ($users as $user): 
+			$link = base_url()."profile/".$user['user_id']; 
+		?> 
+	
 			<li>
 				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg'/></a>
 				<a href="<?php echo $link; ?>"><?php echo $user['user_fullname']; ?></a>
 			</li> 		
-		<?php endforeach; ?>
+		<?php endforeach; } else { 
+			$link = base_url()."profile/".$users[0]['user_id'];
+		?>
+			<li>
+				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg'/></a>
+				<a href="<?php echo $link; ?>"><?php echo $this->session->userdata('username'); ?></a>			
+			</li>
+		<?php } ?>
 	</ul>
 	
 	</div> <!--end profileList-->	
@@ -35,11 +48,9 @@
 	<h1>EVENTS CALENDAR</h1>
 	
 		<ol>
-		<li><a href='<?php echo base_url()."addEvents/".$this->session->userdata('userId'); ?>'>Add Event</a></li>
-		<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
+			<li><a href='<?php echo base_url()."addEvents/".$this->session->userdata('userId'); ?>'>Add Event</a></li>
+			<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
 		</ol>
-		<!--<p><a href='<?php echo base_url(); ?>allEvents'>View All </a></p>-->
-
 		<ul>	
 		<?php 		
 		foreach ($events as $event):
