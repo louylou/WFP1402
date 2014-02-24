@@ -92,13 +92,12 @@ class MainController extends CI_Controller {
 				$email = $this->input->post('email');
 				$password = $this->input->post('password');
 				$user = $this->MainModel->login($email,$password);
-						
-				//echo "user: ";
-				//print_r($user);
-					
-					// Go to Group Page
-					redirect( base_url().'groupHome', 'refresh');
-					exit();				
+	
+				// Go to Group Page
+				
+				//adding id
+				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
+				exit();				
 			} 
 			else if ($this->input->post('submit') === 'Submit') {
 					
@@ -110,8 +109,10 @@ class MainController extends CI_Controller {
 					'user_salt' => $salt
 				);
 				
-				$this->MainModel->addUser($user_info);								
-				redirect( base_url().'groupHome', 'refresh');
+				$this->MainModel->addUser($user_info);		
+				
+				//adding id						
+				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
 				exit();			
 			}														
 		} //end form_validation
@@ -129,14 +130,15 @@ class MainController extends CI_Controller {
 	
 	}
 	
-	public function groupHome(){
+	public function groupHome($id){ //$id
 			
-		$userId = $this->uri->segment(2);
+		//$userId = $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
-		$data['users'] = $this->MainModel->profileInfo($userId); 
+		$data['users'] = $this->MainModel->profileInfo($id); //$userId 
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
 	
-		//var_dump($data['users']);
+		var_dump($data['users']);
+		
 	
 		$this->load->view('header', $data); 
 		$this->load->view('groupHome', $data); 
@@ -178,7 +180,7 @@ class MainController extends CI_Controller {
 			if ($this->input->post('createGroup') === 'Create Group') {
 		
 				$this->MainModel->createGroup($this->session->userdata('userId'), $this->input->post('newGroup') );			
-				redirect( base_url().'groupHome', 'refresh');
+				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
 				exit();	
 			}
 		
@@ -186,7 +188,7 @@ class MainController extends CI_Controller {
 
 				$joinGroup = $this->input->post('joiningGroup');
 				$groupExist = $this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));													
-				redirect( base_url().'groupHome', 'refresh');
+				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
 				exit();	
 		
 			}
@@ -201,22 +203,21 @@ class MainController extends CI_Controller {
 
 	public function userProfile($id){
 	
-		$data['title'] = "User Profile: Perfect For Me";
-		//$userId = $this->uri->segment(2);  
+		$data['title'] = "User Profile: Perfect For Me"; 
 		$data['proInfo'] = $this->MainModel->profileInfo($id); //$userId
 		
 		$data['gifts'] = $this->MainModel->displayGifts($id);
 		
 		//var_dump($data['gifts']);	
-		//passing in the username, id, & all likes
 		//var_dump($data['proInfo']);		
-		/*
+		
+		
 		session_start();
 		var_dump($this->uri->segment(2));
 		var_dump($this->session->userdata('userId'));
-		var_dump($data['proInfo']);
-		print_r($this->session->all_userdata());
-		*/
+		
+		//print_r($this->session->all_userdata());
+		
 		
 		$this->load->view('header', $data); 
 		$this->load->view('profilePg', $data); 
@@ -440,14 +441,14 @@ class MainController extends CI_Controller {
 					'event_starttime' => $this->input->post('startTime'),
 					'event_endtime' => $this->input->post('endTime'),	
 					'event_user_id' => $this->session->userdata('userId')				
-				);				
-			
+				);
+
 				$this->MainModel->addEvnts($addEvnt, $this->session->userdata('userId')); 
 			
 				redirect( base_url().'allEvents', 'refresh');
 				exit();
 			
-			}else { //not needed		
+			}else { 		
 				// Set Error Message
 				$data['error'] = "Please Enter Correct Event Info.";		
 			}

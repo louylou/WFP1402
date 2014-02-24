@@ -43,7 +43,7 @@
 			
 			<?php $s = $this->session->userdata('userId');
 				if ($s) { ?>
-				<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li>
+				<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Perfect for Me</a></li>
 				<?php } else { ?>
 				<li><a href="<?php echo base_url(); ?>">Perfect for Me</a></li>
 				<?php } ?>
@@ -56,7 +56,6 @@
 				<p>
 					<?php
 					$s = $this->session->userdata('userId'); 
-					//$e = $this->session->userdata('email'); 
 					$helloUser = $this->session->userdata('username');//displays correct user name
 					if (!$s){ //if user session isnt logged in, show the login form
 						$data = array(

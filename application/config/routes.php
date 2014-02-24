@@ -41,16 +41,17 @@
 $route['default_controller'] = "MainController";
 $route['404_override'] = '';
 
-$route['groupHome'] = 'MainController/groupHome';
+//adding $id
+$route['groupHome/(:num)'] = 'MainController/groupHome/$1';
 $route['groups/(:num)'] = 'MainController/groups/$1';
 $route['about'] = 'MainController/about';
 $route['contact'] = 'MainController/contact';
 $route['terms'] = 'MainController/terms';
 $route['profile/(:num)'] = 'MainController/userProfile/$1';
-$route['editProfile/(:num)'] = 'MainController/editProfile/$1'; // add(:num) at the end of editProfile
+$route['editProfile/(:num)'] = 'MainController/editProfile/$1'; 
 
 $route['allEvents'] = 'MainController/allEvents'; //add (:num) at the end
-$route['addEvents/(:num)'] = 'MainController/addEvents/$1'; //add (:num) at the end
+$route['addEvents/(:num)'] = 'MainController/addEvents/$1'; 
 
 
 

@@ -1,6 +1,6 @@
 <section id="breadcrumbs">
 	<ul>
-		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
+		<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Group Home >></a></li> 
 		<li><a href="<?php echo base_url(); ?>allEvents"> All Events</a></li>
 	</ul>
 </section>

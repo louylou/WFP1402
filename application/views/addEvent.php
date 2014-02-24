@@ -1,6 +1,6 @@
 <section id="breadcrumbs">
 	<ul>
-		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
+		<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Group Home >></a></li> 
 		<li><a href="<?php echo base_url(); ?>allEvents"> All Events >></a></li>
 		<li><a href="<?php echo base_url()."addEvents/".$this->session->userdata('userId')?>"> Add Event </a></li>
 	</ul>
@@ -30,6 +30,7 @@
 		<p>
 			<?php			
 			$options = array(
+				//$key => $value
 				'' => 'Please Choose An Event Type', 
 				'birthday' => 'Birthday',
 				'graduation' => 'Graduation',

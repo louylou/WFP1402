@@ -19,12 +19,20 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	} //end __construct
 
 	public function login($email, $pass) { //$email, $pass are the values the user typed into the input fields 
-
 	
 		// 1). Is there a user with that email? 
 		$this->db->select('user_email, user_id, user_fullname, user_salt, user_password');
-		$this->db->from('users');
+		$this->db->from('users');	
 		$this->db->where('user_email', $email);
+		
+		
+		//NEW VVVVV
+		//$this->db->select('group_id, group_name');
+		//$this->db->from('allGroups');
+		
+		//
+		
+		
 		$result = $this->db->get();
 		
 		
@@ -34,7 +42,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			// 3). Get salt for that user
 			$user = $result->row_array(); 
 			$salt = $user['user_salt'];
-			
+
 			// 4). Create hash to compare
 			$password = md5($pass.$salt);
 				
@@ -44,8 +52,14 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 				// 6). Answer to 5)... Yes
 				$this->session->set_userdata('email', $email); 
 				$this->session->set_userdata('userId', $user['user_id']); 
-				$this->session->set_userdata('username', $user['user_fullname']); 
-				$this->session->set_userdata('username', $user['user_fullname']); 
+				$this->session->set_userdata('username', $user['user_fullname']);
+				
+				
+				//NEW VVVVVVV	
+				//$this->session->set_userdata('groupId', $user['group_id']);
+				//$this->session->set_userdata('groupName', $user['group_name']);	  
+			
+				
 				return $email;
 			
 			
@@ -59,7 +73,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		else {		
 			//return 'invalid user';
 			// error invalid user		
-		}	
+		}			
 	} //end login
 	
 	//randomizes a string that can be used to mix with the user's md5 password thats hashed 
@@ -109,8 +123,8 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		
 		//4.) inserting the new group id into the groupnames table, which has the session userId stored with it. 
 		$data = array('groupname_id'=>$r[0]['group_id'], 'groupname_user_id'=> $userId);
-		$this->db->insert('groupnames', $data); 	
-											
+		$this->db->insert('groupnames', $data); 
+										
 		return true;
 		
 	}
@@ -132,9 +146,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			$data = array('groupname_id'=>$groupExist['group_id'], 'groupname_user_id'=> $userId);
 			$this->db->where('groupname_user_id', $this->session->userdata('userId'));
 			$this->db->insert('groupnames', $data); 
-			
-			//var_dump($result);
-			//var_dump($groupExist);
 
 			$this->session->set_userdata('groupId', $groupExist['group_id']);
 			$this->session->set_userdata('groupName', $groupExist['group_name']);						
@@ -175,12 +186,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			$this->db->insert('events', $addEvnt); 				
 			return $this->db->last_query();			
 		} 
-		
-		//if ('birthday') {
-		//$icon = 
-		//}
-		
-		
+
 		$result= $this->db->get(); 
 
 		if ($result->num_rows() > 0) { 
@@ -201,9 +207,10 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		if ($userId != ''){	
 			
 			$this->db->where('user_id', $userId);
-			$this->db->where('groupname_id', $this->session->userdata('groupId'));
-			
+			//$this->db->where('groupname_id', $this->session->userdata('groupId'));
+	
 		}
+				
 		$fullNameDisplay= $this->db->get(); 
 
 		if ($fullNameDisplay->num_rows() > 0) { 
