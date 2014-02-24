@@ -186,27 +186,40 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	public function profileInfo($userId = '') { //$userId is = $id in the controller
-		//groupname_id, groupname_user_id,
-		$this->db->select(' user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
+		$groupId = "";
+		
+		if ($userId == ''){
+			$this->db->select('groupname_id');
+			$this->db->from('groupnames');
+			$this->db->where('groupname_user_id', $this->session->userdata('userId') );
+		
+			$group= $this->db->get(); 
+			$groupArray = $group->result_array();
+		
+			if ($group->num_rows() == 0){
+				$groupId = 0;
+			} else {
+				$groupId = $groupArray[0]['groupname_id'];
+			}
+		}
+		$this->db->select('groupname_id, groupname_user_id,user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
 		$this->db->order_by('user_fullname', 'asc');
 		$this->db->from('users');
-		//$this->db->join('groupnames', 'groupnames.groupname_user_id = users.user_id');
+		$this->db->join('groupnames', 'groupnames.groupname_user_id = users.user_id');
 		
-		
-		/*
-		$this->db->select('groupname_id, groupname_user_id, user_fullname, user_id, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes');
-		$this->db->order_by('user_fullname', 'asc');
-		$this->db->from('groupnames');
-		$this->db->join('users', 'users.user_id = groupnames.groupname_user_id');
-		*/
-		if ($userId != ''){	
-			
-			$this->db->where('user_id', $userId);
-			//$this->db->where('groupname_id', $this->session->userdata('groupId'));
 	
-		}		
+		if ($userId <> ''){
+			$this->db->where('user_id', $userId);
+		} else {
+			$this->db->where('groupname_id', $groupId );
+		}
+				
 		$fullNameDisplay= $this->db->get(); 
 
+		//echo "groupId:".$groupId;
+		//echo "session.userId:".$this->session->userdata('userId');
+		//echo "userId:".$userId;
+		
 		if ($fullNameDisplay->num_rows() > 0) { 
 		
 			return $fullNameDisplay->result_array(); 

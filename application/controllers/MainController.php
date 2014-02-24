@@ -134,7 +134,7 @@ class MainController extends CI_Controller {
 			
 		$userId = $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
-		$data['users'] = $this->MainModel->profileInfo($userId); //removed $Id 
+		$data['users'] = $this->MainModel->profileInfo(''); //removed $Id 
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
 	
 		//var_dump($data['users']);

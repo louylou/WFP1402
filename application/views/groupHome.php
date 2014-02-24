@@ -22,7 +22,7 @@
 	<ul>	
 			 
 		<?php 
-		if (is_array($users) || $this->session->userdata('groupId') == $users[0]['groupname_id'] ) {
+		if (is_array($users) ) {
 			foreach ($users as $user): 
 			$link = base_url()."profile/".$user['user_id']; 
 		?> 
