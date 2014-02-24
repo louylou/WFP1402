@@ -13,7 +13,7 @@
 		
 		<title><?php echo $title ?></title>
 		
-		<!-- GA, where should I add it?
+		<!-- GA
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,10 +31,9 @@
 
 	<body>
 		
-		<?php 
+		<!--<?php 
 		echo "Logged in: ".$this->session->userdata('userId'); 
-		?>
-	
+		?>-->	
 	
 		<header>
 		<nav>

@@ -137,9 +137,8 @@ class MainController extends CI_Controller {
 		$data['users'] = $this->MainModel->profileInfo($userId); //removed $Id 
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
 	
-		var_dump($data['users']);
+		//var_dump($data['users']);
 		
-	
 		$this->load->view('header', $data); 
 		$this->load->view('groupHome', $data); 
 		$this->load->view('footer');
@@ -215,16 +214,12 @@ class MainController extends CI_Controller {
 		
 		$data['gifts'] = $this->MainModel->displayGifts($id);
 		
-		//var_dump($data['gifts']);	
-		//var_dump($data['proInfo']);		
-		
+		//var_dump($data['gifts']);				
 		/*
 		session_start();
-		var_dump($this->uri->segment(2));
 		var_dump($this->session->userdata('userId'));
 		*/
-		var_dump($data['proInfo']);	
-		
+		//var_dump($data['proInfo']);		
 		//print_r($this->session->all_userdata());
 		
 		
@@ -425,19 +420,6 @@ class MainController extends CI_Controller {
 					),
 				);
 			}
-			//added 
-			//else {
-			//$config = array();			
-			//}
-					
-		//added 
-		/*$data['error'] = "";
-		$this->form_validation->set_error_delimiters('<label class="error">', '</label>');
-		$this->form_validation->set_message('required', 'Required!');		
-		$this->form_validation->set_rules($config);
-	
-		if ($this->form_validation->run() !== FALSE) {
-		*/	
 			
 			if ($this->input->post('addEvent') === 'Add Event') {
 	
@@ -459,15 +441,7 @@ class MainController extends CI_Controller {
 				// Set Error Message
 				$data['error'] = "Please Enter Correct Event Info.";		
 			}
-			
-		//added	
-		//}//end form_validation
-		/*else {		
-			// Set Error Message
-			$data['error'] = "Please Enter Correct User Info.";		
-		}*/ 
-		
-	 
+
 			$data['proInfo'] = $this->MainModel->addEvnts($id);
 	
 			$data['title'] = "Add An Event: Perfect For Me";
@@ -497,7 +471,6 @@ class MainController extends CI_Controller {
 	
 	public function terms(){
 		$data['title'] = "Terms: Perfect For Me";
-		//$data['proList'] = $this->MainModel->homeProfiles();
 		
 		$this->load->view('header', $data); 
 		$this->load->view('terms', $data); 
@@ -507,6 +480,5 @@ class MainController extends CI_Controller {
 	
 
 //end MainController
-
 }
 ?>
