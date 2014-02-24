@@ -12,11 +12,11 @@
 	<h1>ALL GIFT PROFILES</h1>
 
 	<ul>
-		<?php $id = $this->db->where('groupname_id', $this->session->userdata('groupId'));
+		<!--<?php $id = $this->db->where('groupname_id', $this->session->userdata('groupId'));
 			$id = $this->db->from('groupnames');
 			$count = $id->count_all_results();
-		?>
-		<li>1 - <?php echo $count; ?> Profiles</li>
+		?>-->
+		<li>1 - <?php echo $this->db->count_all_results('users'); ?> Profiles</li><!--$count;-->
 	</ul>
 
 	<ul>	
