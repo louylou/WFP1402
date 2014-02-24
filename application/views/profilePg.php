@@ -1,6 +1,6 @@
 <section id="breadcrumbs">
-<ul>
-	<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Group Home >></a></li> <!--links call the functions in the controller--> 
+<ul><!--was ."groupHome/".$this->session->userdata('userId')-->
+	<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> <!--links call the functions in the controller--> 
 	<li><a href="<?php echo base_url()."profile/".$proInfo[0]['user_id']; ?>"> User Profile</a></li>
 </ul>
 </section>

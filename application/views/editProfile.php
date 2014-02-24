@@ -2,8 +2,8 @@
 
 	<?php $link = base_url()."editProfile/".$this->session->userdata('userId'); ?>
 	
-	<ul>
-		<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Group Home >></a></li> 
+	<ul><!-- was ."groupHome/".$this->session->userdata('userId') -->
+		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
 		<li><a href="<?php echo base_url()."profile/".$this->session->userdata('userId'); ?>"> User Profile >></a></li>			
 		<li><a href="<?php echo $link; ?>">Edit Profile</a></li>
 	</ul>

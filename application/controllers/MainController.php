@@ -95,8 +95,8 @@ class MainController extends CI_Controller {
 	
 				// Go to Group Page
 				
-				//adding id
-				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
+				//removed .$this->session->userdata('userId')
+				redirect( base_url().'groupHome', 'refresh');
 				exit();				
 			} 
 			else if ($this->input->post('submit') === 'Submit') {
@@ -111,8 +111,8 @@ class MainController extends CI_Controller {
 				
 				$this->MainModel->addUser($user_info);		
 				
-				//adding id						
-				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
+				//removed .$this->session->userdata('userId')				
+				redirect( base_url().'groupHome', 'refresh');
 				exit();			
 			}														
 		} //end form_validation
@@ -130,11 +130,11 @@ class MainController extends CI_Controller {
 	
 	}
 	
-	public function groupHome($id){ //$id
+	public function groupHome(){ //removed $id
 			
-		//$userId = $this->uri->segment(2);
+		$userId = $this->uri->segment(2);
 		$data['title'] = "Group Home: Perfect For Me";
-		$data['users'] = $this->MainModel->profileInfo($id); //$userId 
+		$data['users'] = $this->MainModel->profileInfo($userId); //removed $Id 
 		$data['events'] = $this->MainModel->events(); //$addEvnt, $userId= ''
 	
 		var_dump($data['users']);
@@ -179,8 +179,9 @@ class MainController extends CI_Controller {
 		
 			if ($this->input->post('createGroup') === 'Create Group') {
 		
+				//removed .$this->session->userdata('userId')
 				$this->MainModel->createGroup($this->session->userdata('userId'), $this->input->post('newGroup') );			
-				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
+				redirect(base_url().'groupHome', 'refresh');
 				exit();	
 			}
 		
@@ -188,12 +189,17 @@ class MainController extends CI_Controller {
 
 				$joinGroup = $this->input->post('joiningGroup');
 				$groupExist = $this->MainModel->joinGroup($joinGroup, $this->session->userdata('userId'));													
-				redirect( base_url().'groupHome/'.$this->session->userdata('userId'), 'refresh');
+				
+				//var_dump($groupExist);
+				
+				//removed .$this->session->userdata('userId')
+				redirect(base_url().'groupHome', 'refresh');
 				exit();	
 		
 			}
 		}//end form validation
 		 
+	 
 		$data['title'] = "Create/Join a Group: Perfect For Me";
 		$this->load->view('header', $data); 
 		$this->load->view('groups', $data); 
@@ -201,6 +207,7 @@ class MainController extends CI_Controller {
 	
 	}
 
+	
 	public function userProfile($id){
 	
 		$data['title'] = "User Profile: Perfect For Me"; 
@@ -211,10 +218,12 @@ class MainController extends CI_Controller {
 		//var_dump($data['gifts']);	
 		//var_dump($data['proInfo']);		
 		
-		
+		/*
 		session_start();
 		var_dump($this->uri->segment(2));
 		var_dump($this->session->userdata('userId'));
+		*/
+		var_dump($data['proInfo']);	
 		
 		//print_r($this->session->all_userdata());
 		
@@ -343,8 +352,6 @@ class MainController extends CI_Controller {
 		}
 	}
 	
-	//upload profile photo here
-	
 	public function profileImg() {
 	
 		if ($this->input->post('upload') === 'Upload'){
@@ -460,10 +467,7 @@ class MainController extends CI_Controller {
 			$data['error'] = "Please Enter Correct User Info.";		
 		}*/ 
 		
-		
-		
-		
-			//$userId =  $this->uri->segment(2); 
+	 
 			$data['proInfo'] = $this->MainModel->addEvnts($id);
 	
 			$data['title'] = "Add An Event: Perfect For Me";

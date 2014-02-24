@@ -42,8 +42,8 @@
 			<ul>
 			
 			<?php $s = $this->session->userdata('userId');
-				if ($s) { ?>
-				<li><a href="<?php echo base_url()."groupHome/".$this->session->userdata('userId'); ?>">Perfect for Me</a></li>
+				if ($s) { ?> <!-- was ."groupHome/".$this->session->userdata('userId')-->
+				<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li>
 				<?php } else { ?>
 				<li><a href="<?php echo base_url(); ?>">Perfect for Me</a></li>
 				<?php } ?>

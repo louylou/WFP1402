@@ -3,11 +3,9 @@
 <section id="groups">	
 	<ul>
 		<li><a href="<?php echo base_url()."groups/".$this->session->userdata('userId'); ?>">Create or Join a Group</a></li>
-		<li>Group: <?php echo ucwords($this->session->userdata('groupName')); ?></li>				
+		<li>Group: <?php echo ucwords($this->session->userdata('groupName')); ?></li>		
 	</ul>
 </section>
-
-			<?php echo $users[0]['user_id']; ?>
 
 <section>
 	<div id='profileList'>		
@@ -22,9 +20,9 @@
 	</ul>
 
 	<ul>	
-			 <!--|| $this->session->userdata('userId') == $users[0]['user_id']-->
-		<?php
-		if ($this->session->userdata('groupId') == $users[0]['groupname_id']) {
+			 
+		<?php 
+		if (is_array($users) || $this->session->userdata('groupId') == $users[0]['groupname_id'] ) {
 			foreach ($users as $user): 
 			$link = base_url()."profile/".$user['user_id']; 
 		?> 
@@ -53,11 +51,9 @@
 			<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
 		</ol>
 		<ul>	
-		<?php 
-		if ($this->session->userdata('groupId') == $users[0]['groupname_id']) {		
-			foreach ($events as $event):
+		<?php foreach ($events as $event):
 			
-				$link = base_url()."profile/".$event['event_user_id'];//should it be user_id instead?
+				$link = base_url()."profile/".$event['event_user_id'];
 				$date = date("m/d", strtotime( $event['event_date']));
 				$day = date("D", strtotime( $event['event_date']));
 		 ?>
@@ -65,9 +61,8 @@
 				<a href="<?php echo $link; ?>"><?php echo $event['event_title']; ?></a>
 				</li>
 	
-			<?php endforeach; } else{ ?>
-				<li>No Events Yet</li>
-			<?php } ?>
+			<?php endforeach; ?>
+	
 		</ul>
 	</div>
 
