@@ -9,7 +9,7 @@
 
 	<h1><?php echo $proInfo[0]['user_fullname']; ?></h1>
 		
-	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg"/></a></p>
+	<p><a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg" alt="Photo of an outlined body figure holder a present, represents the user's profile photo."/></a></p>
 	
 	<?php $link = base_url()."editProfile/".$proInfo[0]['user_id']; ?>
 	

@@ -1,8 +1,6 @@
-
-<section id="404">
+<section id="404"> <!--This page shows when someone tried to view another member's edit page-->
 
 <h2>404 Error - Page not found</h2>
-<p>Sorry, but you are not authorized to access this page.
-</p>
+<p>Sorry, but you are not authorized to access this page.</p>
 
 </section>

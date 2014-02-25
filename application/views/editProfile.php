@@ -7,7 +7,6 @@
 		<li><a href="<?php echo base_url()."profile/".$this->session->userdata('userId'); ?>"> User Profile >></a></li>			
 		<li><a href="<?php echo $link; ?>">Edit Profile</a></li>
 	</ul>
-	<!--<?php echo base_url(); ?>editProfile-->
 </section>
 
 <section id="editProfile">
@@ -15,44 +14,30 @@
 	
 	<h1><?php echo $this->session->userdata('username'); ?></h1>
 	<div id="upload">
-		<a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg"/></a>
+		<a href=""><img src="<?php echo base_url(); ?>assets/images/nopic.jpg" alt="Photo of an outlined body figure holder a present, represents the user's profile photo."/></a>
 	
-		<!--<?php if (isset($images) && count($images)): ?>
-		
-			<a href="<?php echo $images['url']; ?>"><img src="<?php echo $images['url']; ?>"/></a>
-		
-		<?php else: ?>
-	
-			<p>Please Upload an Profile Image</p>
-			
-		<?php endif; ?>-->
-	
-	
+		<!--uploading photo files for user Profiles-->
+		<!--<?php if (isset($images) && count($images)): ?>		
+			<a href="<?php echo $images['url']; ?>"><img src="<?php echo $images['url']; ?>"/></a>		
+		<?php else: ?>	
+			<p>Please Upload an Profile Image</p>			
+		<?php endif; ?>	
 		<?php 
 			echo form_open_multipart(base_url()."editProfile/".$this->session->userdata('userId')); 
 			echo form_upload('userfile', 'Userfile');
 			echo form_submit('upload', 'Upload');
 			echo form_close(); 
-		?>
+		?>-->
 	</div>
-
-
-		
+	
 	<?php echo form_open( base_url()."editProfile/".$this->session->userdata('userId') ); ?>
-	<legend>Add/Delete Your Likes & Dislikes</legend>
+		<legend>Add/Delete Your Likes & Dislikes</legend>
 		<p>
-			<?php
-			
-			/*
-			if ($user['likes_clothes'] != "") {
-				$placeholder = $user['likes_clothes']; //info from db
-			} else $placeholder = "ex: Hipster, BoHo Chic, Preppy...";
-			*/
-			
+			<?php				
 			$data = array(
 				'name' => 'clothes',
 				'id' => 'clothes',
-				'placeholder' => 'ex: Hipster, BoHo Chic, Preppy...', //$placeholder,
+				'placeholder' => 'ex: Hipster, BoHo Chic, Preppy...', 
 				'size' => '90'			
 			);
 			echo form_label('Clothes Style:', 'clothes');
@@ -67,7 +52,6 @@
 				'size' => '90'			
 			);
 			echo form_label('Food Style:', 'food');
-			//echo form_error('food');
 			echo form_input($data, set_value('food')); ?>
 		</p>
 
@@ -80,7 +64,6 @@
 				'size' => '90'			
 			);
 			echo form_label('Movie Genre:', 'movies');
-			//echo form_error('movies');
 			echo form_input($data, set_value('movies')); ?>
 		</p>
 
@@ -93,7 +76,6 @@
 				'size' => '90'
 			);
 			echo form_label('Hobbies:', 'hobbies');
-			//echo form_error('hobbies');
 			echo form_input($data, set_value('hobbies')); ?>
 		</p>
 		<p>
@@ -105,7 +87,6 @@
 				'size' => '90'
 			);
 			echo form_label('Other:', 'other');
-			//echo form_error('other');
 			echo form_input($data, set_value('other')); ?>
 		</p>
 		<p>
@@ -117,7 +98,6 @@
 				'size' => '90'
 			);
 			echo form_label('Other:', 'dislikes');
-			//echo form_error('dislikes');
 			echo form_input($data, set_value('dislikes')); ?>
 		</p>
 

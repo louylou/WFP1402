@@ -5,6 +5,7 @@
 	<head>	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		
+		<!--CSS files-->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
 		
@@ -13,7 +14,7 @@
 		
 		<title><?php echo $title ?></title>
 		
-		<!-- GA
+		<!-- Google Analytics -->
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -24,25 +25,18 @@
 		  ga('send', 'pageview');
 
 		</script>
-		-->		
+				
 	</head>
 
 	<body>
-		
-		<!--<?php 
-		echo "Logged in: ".$this->session->userdata('userId'); 
-		?>-->	
-	
 		<header>
 		<nav>
-		
-			<ul>
-			
+			<ul>		
 			<?php $s = $this->session->userdata('userId');
-				if ($s) { ?> <!-- was ."groupHome/".$this->session->userdata('userId')-->
-				<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li>
+				if ($s) { ?>
+					<li><a href="<?php echo base_url(); ?>groupHome">Perfect for Me</a></li>
 				<?php } else { ?>
-				<li><a href="<?php echo base_url(); ?>">Perfect for Me</a></li>
+					<li><a href="<?php echo base_url(); ?>">Perfect for Me</a></li>
 				<?php } ?>
 				<li><a href="<?php echo base_url(); ?>about">About</a></li>
 				<li><a href="<?php echo base_url(); ?>contact">Contact</a></li>

@@ -28,14 +28,15 @@
 		?> 
 	
 			<li>
-				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg'/></a>
+				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg' alt="Photo of an outlined body figure holder a present, represents the user's profile photo."/></a>
 				<a href="<?php echo $link; ?>"><?php echo $user['user_fullname']; ?></a>
 			</li> 		
 		<?php endforeach; } else { 
 			$link = base_url()."profile/".$users[0]['user_id'];
 		?>
-			<li>
-				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg'/></a>
+			<li><?php echo 'Welcome! Start by Creating or Joining a group.'; ?></li>
+			<li>	
+				<a href="<?php echo $link; ?>"><img src='<?php echo base_url(); ?>assets/images/nopicSmall.jpg' alt="Icon of two party hats."/></a>
 				<a href="<?php echo $link; ?>"><?php echo $this->session->userdata('username'); ?></a>			
 			</li>
 		<?php } ?>
@@ -51,7 +52,6 @@
 			<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
 		</ol>
 		<ul>	
-		<!--FIXXXXXXX && $this->session->userdata('gId') == $events[0]['event_user_id']-->
 		<?php if ($events > 0) {
 			foreach ($events as $event):
 			
@@ -67,18 +67,17 @@
 				<li>
 					No Events Yet.
 				</li>	
-			<?php } ?>
-	
+			<?php } ?>	
 		</ul>
 	</div>
 
 	<div id='lastResort'>
 	<h1>Last Resort</h1>
 		<ul>
-			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg'/><span>Same Day Delivery</span><a href='http://www.ftd.com'>www.ftd.com</a></li>
-			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg'/><span>Same Day Delivery</span><a href='http://www.fromyouflowers.com'>www.fromyouflowers.com</a></li>
-			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg'/><span>Over Night Delivery</span><a href='http://www.proflowers.com'>www.proflowers.com</a></li>
-			<li><img src='<?php echo base_url(); ?>assets/images/basket.jpg'/><span>Express Delivery</span><a href='http://www.harryanddavid.com'>www.harryanddavid.com</a></li>
+			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg' alt="Icon of a bouquet of flowers, represents the flower website it is linked to."/><span>Same Day Delivery</span><a href='http://www.ftd.com'>www.ftd.com</a></li>
+			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg' alt="Icon of a bouquet of flowers, represents the flower website it is linked to."/><span>Same Day Delivery</span><a href='http://www.fromyouflowers.com'>www.fromyouflowers.com</a></li>
+			<li><img src='<?php echo base_url(); ?>assets/images/flowers.jpg' alt="Icon of a bouquet of flowers, represents the flower website it is linked to."/><span>Over Night Delivery</span><a href='http://www.proflowers.com'>www.proflowers.com</a></li>
+			<li><img src='<?php echo base_url(); ?>assets/images/basket.jpg' alt="Icon of a basket of fruit, represents the gift basket website it is linked to."/><span>Express Delivery</span><a href='http://www.harryanddavid.com'>www.harryanddavid.com</a></li>
 		</ul>
 	</div>
 		

@@ -1,4 +1,4 @@
-<section id="breadcrumbs">
+<section id="breadcrumbs"><!--this page is where the user can create a new group for others to join, or join an already existing group-->
 	<ul>
 		<li><a href="<?php echo base_url(); ?>groupHome">Group Home >></a></li> 
 		<li><a href="<?php echo base_url(); ?>groups">Group Accounts</a></li>
@@ -8,17 +8,16 @@
 <section id="groupPage">
 			
 	<h1>Create or Join a Group</h1>
-
 		
 	<?php echo form_open( base_url()."groups/".$this->session->userdata('userId') ); ?>
 	<legend>Create a unique group name.</legend>
 		
-		<p><!-- Creating a group input-->
+		<p><!-- Creating a new group-->
 			<?php 
 			$data = array(
 				'name' => 'newGroup',
 				'id' => 'newGroup',
-				'placeholder' => 'Create a descriptive and unique Group Name.', //$placeholder,
+				'placeholder' => 'Create a descriptive and unique Group Name.', 
 				'size' => '50'			
 			);
 			echo form_label('New Group Name:', 'newGroup');
@@ -39,7 +38,7 @@
 	<?php echo form_open( base_url()."groups/".$this->session->userdata('userId') ); ?>	
 		<legend>Join a Group. <span>(make sure group name is spelled correctly).</span></legend>
 		
-		<p> <!-- Joining a group input-->
+		<p> <!-- Joining a group -->
 			<?php
 			
 			$data = array(

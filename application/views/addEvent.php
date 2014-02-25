@@ -40,7 +40,7 @@
 			echo form_label('Event Type:', 'eventType');
 			echo form_error('eventType');
 			
-			echo form_dropdown('eventType', $options ); //$proInfo //if no error add ,'special' after $options
+			echo form_dropdown('eventType', $options, 'special' );  
 			 
 			?>
 		</p>
@@ -126,4 +126,3 @@
 	<p><img src="<?php echo base_url(); ?>assets/images/eventPic.jpg"/></p>
 	
 </section>	
-	

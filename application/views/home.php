@@ -1,9 +1,8 @@
-<!-- The CTA photo, Why Join? and Create an Account Section on the Home page-->
-		
-<section id="cta">
+<section id="cta"> <!-- The CTA photo, Why Join? and Create an Account Section on the Home page-->
+	
 	<p><img src="<?php echo base_url(); ?>assets/images/ctaImg.jpg" alt="Image of a woman's hands holding a small wrapped present" /></p>
-</section>
 
+</section>
 
 <section id="registration">
 
@@ -23,11 +22,6 @@
 		</p>
 				
 	</div>
-	<!--
-	$attr = array (
-	'class'=>'name of class to style the fieldset'
-	);
-	<?php echo form_fieldset("Create An Account", $attr); ?>-->
 	
 	<?php echo form_open(base_url()); ?>
 	<legend>Create An Account</legend>
@@ -106,6 +100,5 @@
 		</p>
 	
 	<?php echo form_close(); ?>
-	<!--<?php echo form_fieldset_close(); ?>-->
-
+	
 </section>		
