@@ -16,7 +16,7 @@
 			$id = $this->db->from('groupnames');
 			$count = $id->count_all_results();
 		?>-->
-		<li>1 - <?php echo $this->db->count_all_results('users'); ?> Profiles</li><!--$count;-->
+		<li>1 - <?php echo $this->db->count_all_results('groupnames'); ?> Profiles</li><!--$count;-->
 	</ul>
 
 	<ul>	
@@ -51,7 +51,9 @@
 			<li><a href='<?php echo base_url(); ?>allEvents'>View All </a></li>
 		</ol>
 		<ul>	
-		<?php foreach ($events as $event):
+		<!--FIXXXXXXX && $this->session->userdata('gId') == $events[0]['event_user_id']-->
+		<?php if ($events > 0) {
+			foreach ($events as $event):
 			
 				$link = base_url()."profile/".$event['event_user_id'];
 				$date = date("m/d", strtotime( $event['event_date']));
@@ -61,7 +63,11 @@
 				<a href="<?php echo $link; ?>"><?php echo $event['event_title']; ?></a>
 				</li>
 	
-			<?php endforeach; ?>
+			<?php endforeach; } else { ?>
+				<li>
+					No Events Yet.
+				</li>	
+			<?php } ?>
 	
 		</ul>
 	</div>

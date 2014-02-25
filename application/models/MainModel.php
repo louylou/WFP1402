@@ -146,8 +146,8 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 		
 	public function events() {	
-				
-		$this->db->select('event_title, event_date, event_user_id, event_starttime, event_endtime, event_location, user_fullname, user_id');
+					
+		$this->db->select('user_fullname, user_id, event_title, event_date, event_user_id, event_starttime, event_endtime, event_location');
 		$this->db->order_by('event_date', 'asc');
 		$this->db->from('events'); 
 		$this->db->join('users', 'users.user_id = events.event_user_id');
