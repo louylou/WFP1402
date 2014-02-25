@@ -8,8 +8,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function __construct() { 
 		
-		//parent::Model();
-		
 		$this->load->database(); //loads in MYSQL Database
 		
 		$this->gallery_path = realpath(APPPATH.'../userImages'); 		
@@ -19,9 +17,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	} //end __construct
 
 	public function login($email, $pass) { //$email, $pass are the values the user typed into the input fields 
-	
-	
-		//NEW group_id, groupname_user_id VVVVVV
 	
 		// 1). Is there a user with that email? 
 		$this->db->select('user_email, user_id, user_fullname, user_salt, user_password');
@@ -53,13 +48,12 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 			// 7). Answer to 5)... No
 			} else {			
 				//return 'Passwords dont match ('.$salt.'): '.$password.' not equal '.$user['user_password'];
-				// error		
+				$data['error'] = "Invalid User Information.";			
 			}	
 			
 		} // 8). Answer to 1)... No
 		else {		
-			//return 'invalid user';
-			// error invalid user		
+			$data['error'] = "Invalid User Information.";	
 		}			
 	} //end login
 	
@@ -230,8 +224,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	
 	public function editPro($likes, $userId = '') { //$userId = $id in controller
 		
-		//, likes_clothes, likes_food, likes_movies, likes_hobbies, likes_other, dislikes
-		
 		$this->db->select('user_fullname, user_id'); //info to display user fullname
 		$this->db->from('users');//info to display user fullname
 				
@@ -288,8 +280,7 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 		foreach ($files as $file) {
 			$images [] = array (
 				'url' => $this->gallery_path_url . $file,
-				'thumb_url' => $this->gallery_path_url . 'thumbs/' . $file,
-			
+				'thumb_url' => $this->gallery_path_url . 'thumbs/' . $file,		
 			);
 		}
 		return $images;
@@ -319,8 +310,6 @@ class MainModel extends CI_Model { //responsible for managing the data from the 
 	}
 	
 	public function displayGifts($userId = '') {
-		
-		// select gift items from database where gift_user_id = user_id (on which page I'm on)
 		
 		$this->db->select('user_fullname, gift_id, user_id, gift_user_id, gift_name, gift_price, gift_url');
 		$this->db->order_by('gift_price', 'asc');

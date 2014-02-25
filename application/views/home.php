@@ -1,3 +1,5 @@
+<meta name="Perfectforme Home" content="Why Join perfectforme? This site is an easy and helpful way to stay connect to family, friends or others while staying up-to-date on personal occasions and each other's gift requests for these events!" />
+
 <section id="cta"> <!-- The CTA photo, Why Join? and Create an Account Section on the Home page-->
 	
 	<p><img src="<?php echo base_url(); ?>assets/images/ctaImg.jpg" alt="Image of a woman's hands holding a small wrapped present" /></p>

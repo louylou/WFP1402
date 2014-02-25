@@ -41,7 +41,7 @@
 $route['default_controller'] = "MainController";
 $route['404_override'] = '';
 
-//adding deleted (:num) & $1
+
 $route['groupHome'] = 'MainController/groupHome';
 $route['groups/(:num)'] = 'MainController/groups/$1';
 $route['about'] = 'MainController/about';

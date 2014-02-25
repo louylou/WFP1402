@@ -4,6 +4,7 @@
 
 	<head>	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="perfect for me's navigation" content="find helpful links to the 'about','contact' and login form." />
 		
 		<!--CSS files-->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/reset.css">

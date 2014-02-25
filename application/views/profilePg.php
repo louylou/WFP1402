@@ -56,12 +56,7 @@
 
 <section id="giftList">	
 	<h1>All Gift Requests</h1>
-	<form>
-		<select>
-			  <option value="price">Price</option>
-			  <option value="name">Name</option>
-		</select>
-	</form>
+	
 	<ul>
 	
 	<?php $id = $this->db->where('gift_user_id', $proInfo[0]['user_id']);

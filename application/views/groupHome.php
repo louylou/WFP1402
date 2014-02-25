@@ -1,5 +1,4 @@
 <!-- This the Group Home Content, Profile list, Calendar & last Resort -->
-
 <section id="groups">	
 	<ul>
 		<li><a href="<?php echo base_url()."groups/".$this->session->userdata('userId'); ?>">Create or Join a Group</a></li>
